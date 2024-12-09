@@ -1,16 +1,9 @@
+
 <script>
-  import { lazyload } from 'vanilla-lazyload';
-  
-  let lazyLoadInstance;
-
-  onMount() => {
-    lazyloadInstance = new lazyload();
-  }
-
   const games = [
     {
       title: "Villainess x Reborn",
-      embed: `<iframe class="lazy player-ratio" src="" data-src="https://itch.io/embed/2746015"/><a href="https://brandenmb.itch.io/villainess-x-reborn">Villainess x Reborn (Early Build)</a></iframe>`
+      embed: `<iframe frameborder="0" src="https://itch.io/embed/2746015" width="552" height="167"><a href="https://brandenmb.itch.io/villainess-x-reborn">Villainess x Reborn (Early Build)</a></iframe>`,
       description: "I served as the team lead for this project, focusing on programming and UI/UX."
     },
     {
