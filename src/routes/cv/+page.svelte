@@ -12,16 +12,16 @@
     background-color: #0d0d0d;
     color: #ffffff;
     height: 100vh;
-    flex-direction: column;
+    flex-direction: column; /* Ensures vertical stacking of elements */
   }
 
   .pdf-container {
-    width: 90%; /* Adjusted width for smaller screens */
-    height: 70%; /* Adjusted height for better spacing on mobile */
+    width: 80%;
+    height: 80%; /* Adjusted height for better spacing */
     border: 1px solid #ffffff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     border-radius: 10px;
-    margin-bottom: 1rem;
+    margin-bottom: 1rem; /* Adds spacing below the PDF container */
   }
 
   iframe {
@@ -29,13 +29,6 @@
     height: 100%;
     border: none;
     border-radius: 10px;
-  }
-
-  .button-row {
-    display: flex;
-    flex-wrap: wrap; /* Allows buttons to wrap on small screens */
-    justify-content: center; /* Center align the buttons */
-    gap: 0.5rem; /* Add space between buttons */
   }
 
   button {
@@ -54,27 +47,19 @@
     background-color: #374151;
   }
 
-  button:active {
-    transform: scale(0.95); /* Adds feedback for button clicks */
-  }
-
   footer {
     position: absolute;
     bottom: 1rem;
     font-size: 0.8rem;
     color: #6b7280;
-    text-align: center;
   }
 </style>
 
 <div class="pdf-container">
-  <iframe src={pdfUrl} title="CV"></iframe>
+    <iframe src={pdfUrl} title="CV"></iframe>
 </div>
 
 <div class="button-row">
-  <button onclick="window.location.href='/'">Home</button>
+  <button on:click={() => (window.location.href = '/')}>Home</button>
 </div>
 
-<footer>
-  © 2024 Your Name. All rights reserved.
-</footer>
