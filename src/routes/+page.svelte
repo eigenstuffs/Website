@@ -45,56 +45,6 @@
     max-width: 500px;
     line-height: 1.5;
     margin: 1rem 0;
-    padding: 0 1rem;
-  }
-  
-  @media (max-width: 768px) {
-    p {
-      max-width: 90%;
-      font-size: 0.95rem;
-    }
-    
-    h1 {
-      font-size: 2rem;
-    }
-    
-    .button-row {
-      flex-direction: column;
-      width: 90%;
-      max-width: 300px;
-    }
-    
-    .icon-row {
-      flex-wrap: wrap;
-      max-width: 300px;
-      justify-content: center;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    p {
-      font-size: 0.9rem;
-    }
-    
-    h1 {
-      font-size: 1.75rem;
-      height: auto;
-    }
-    
-    button {
-      width: 100%;
-    }
-    
-    :global(body) {
-      height: auto;
-      min-height: 100vh;
-      padding: 2rem 0;
-    }
-    
-    footer {
-      position: relative;
-      margin-top: 2rem;
-    }
   }
 
   .icon-row {
@@ -145,19 +95,9 @@
     font-size: 0.8rem;
     color: #6b7280;
   }
-  
-  .main-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    max-width: 800px;
-    padding: 0 1rem;
-    box-sizing: border-box;
-  }
 </style>
 
-<div class="main-container">
+<div>
   <h1>{displayText}</h1>
   <div class="icon-row">
     <a href="https://bsky.app/profile/branden.zip" target="_blank" rel="noopener noreferrer">
