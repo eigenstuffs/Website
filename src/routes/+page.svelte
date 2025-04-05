@@ -129,8 +129,9 @@
   <p>
     Welcome! My name is Branden and I'm a Public Policy & Political Science PhD student at the University of Michigan.<br><br>
 
-    My current interests are in (1) the political behavior of economic actors amidst the
-    clean energy transition and (2) electoral competition.<br><br>
+    I am interested in political economy. My current research asks how voters, politicians, and economic elites engage in climate politics,
+    with a regional focus on Southeast Asia.
+    <br><br>
 
     Methodologically, I am interested in spatial data, text, and networks.<br><br>
 
