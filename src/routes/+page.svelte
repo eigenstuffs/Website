@@ -75,7 +75,7 @@
 
   .name-heading {
     --steps: var(--name-length, 10);
-    font-size: 2.5rem;
+    font-size: 2rem;
     color: var(--text-color-heading);
     margin-bottom: 1rem;
     display: inline-block;
