@@ -1,0 +1,136 @@
+/* src/app.css */
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap');
+
+:root {
+  --bg-color: #000000;
+  --text-color-main: #FFFFFF;
+  --text-color-heading: #FFFFFF;
+  --icon-color: #FFFFFF;
+  --icon-hover-color: #BBBBBB;
+  --button-bg: #FFFFFF;
+  --button-text: #000000;
+  --button-hover-bg: #DDDDDD;
+  --cursor-color: #FFFFFF;
+  --link-color: #FFFFFF;
+  --link-hover-color: #DDDDDD;
+  --separator-color: #444;
+  --font-family-typewriter: 'Courier Prime', monospace;
+  --typing-speed: 0.15s;
+  --icon-size: 1.5rem;
+}
+
+html {
+  box-sizing: border-box;
+  height: 100%;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-color);
+  color: var(--text-color-main);
+  font-family: var(--font-family-typewriter);
+  min-height: 100vh; /* Ensure body takes at least full viewport height */
+}
+
+a {
+   color: var(--link-color);
+   text-decoration: none;
+   transition: color 0.2s ease;
+}
+a:hover, a:focus {
+   color: var(--link-hover-color);
+   text-decoration: underline;
+   outline: none;
+}
+
+/* Add these rules to src/app.css */
+
+.blog-post-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 1.5rem;
+    max-width: 800px; /* Or adjust for optimal reading width */
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+  
+  .post-full {
+      flex-grow: 1; /* Push footer down */
+      width: 100%;
+      padding-bottom: 2rem; /* Space before footer */
+  }
+  
+  .post-header {
+     text-align: center;
+     margin-bottom: 2.5rem;
+     padding-bottom: 1rem;
+     border-bottom: 1px solid var(--separator-color);
+  }
+  
+  .post-header h1 {
+    font-size: 2.2rem; /* Larger title for single post */
+    color: var(--text-color-heading);
+    margin-bottom: 0.5rem;
+  }
+  
+  .post-date {
+      font-size: 0.9rem;
+      color: var(--text-color-main);
+      opacity: 0.8;
+  }
+  
+  .post-content {
+      font-size: 1rem;
+      line-height: 1.7;
+      text-align: left;
+  }
+  
+  /* Global styles for common HTML elements within post content */
+  .post-content p {
+      margin-bottom: 1.2em;
+  }
+  
+  .post-content ul,
+  .post-content ol {
+      margin-bottom: 1.2em;
+      padding-left: 2em;
+  }
+  
+  .post-content li {
+      margin-bottom: 0.5em;
+  }
+  
+  .post-content pre {
+      background-color: #1e1e1e;
+      color: #d4d4d4;
+      padding: 1em;
+      border-radius: 4px;
+      overflow-x: auto;
+      margin-bottom: 1.2em;
+      font-family: var(--font-family-typewriter);
+      font-size: 0.9em;
+  }
+  
+  .post-content code {
+     font-family: var(--font-family-typewriter);
+  }
+  
+  /* Footer style used on multiple page types */
+  .footer-nav {
+      margin-top: auto; /* Pushes to bottom if content is short */
+      text-align: center;
+      flex-shrink: 0;
+      padding-top: 1rem;
+      border-top: 1px solid var(--separator-color);
+  }
+  /* Ensure global link styles apply */
+  .footer-nav a {
+     /* Uses global 'a' styles */
+  }

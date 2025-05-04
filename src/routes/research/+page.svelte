@@ -1,106 +1,139 @@
 <script>
   const papers = [
     {
-      title: "The Role of Partisanship in State Climate Policy",
-      authors: "Branden Bohrnsen",
-      abstract:
-        "What are the political determinants of state climate policy? I argue that facets of climate policy differ in their incentive structures, particularly along the lines of clean energy and energy efficiency. Analyzing policies and environmental outcomes from 1998 to 2020 across state legislatures, I find that Republican-led polarization is associated with worse clean energy outcomes and weaker climate policies. Energy efficiency, on the other hand, is robust to polarization, which I attribute to shared ince ntives between policymakers and fossil fuel stakeholders. I suggest that the bundling of popular energy efficiency policies with controversial, yet effective renewable energy policy is necessary to sustain meaningful climate policies.",
-      link: "https://github.com/eigenstuffs/thesis/blob/main/dec%206%20version.pdf",
+        title: "Polarized Climate Policy",
+        url: "https://github.com/eigenstuffs/thesis/blob/main/dec%206%20version.pdf",
+        abstract: "Climate policy is a result of the distributive conflict between fossil fuel incumbents and clean energy interests. Consequently, the climate policies that most immediatley threaten fossil fuels are the most polarized. I test this theory empirically using state legislature data from 1998 to 2020.",
+        status: "In Progress"
+    },
+    {
+        title: "Measuring Local Wealth in the Philippines",
+        url: "https://osf.io/95jva",
+        abstract: "Existing small area estimates of poverty suffer from three main issues: (1) they are typically incomparable over time, (2) their validity is conditional on accurate income reporting, and (3) estimates outside of census years fail to update data. Using the case of the Philippines, I exploit comparable household surveys to estimate local wealth from 1985 to 2010.",
+        status: "In Progress"
     }
-  ]
+  ];
+
+  $: workingPapers = papers.filter(p => p.status === 'Working Paper');
+  $: inProgressPapers = papers.filter(p => p.status === 'In Progress');
+
 </script>
 
+<div class="page-container research-container">
+  <header>
+    <h1>Research</h1>
+  </header>
+
+  <main class="content-area">
+    {#if workingPapers.length > 0}
+      <section class="paper-list">
+        <h2>Working Papers</h2>
+        {#each workingPapers as paper (paper.title)}
+          <article class="paper-entry">
+            <h3>
+              {#if paper.url}
+                <a href={paper.url} target="_blank" rel="noopener noreferrer">
+                  {paper.title}
+                </a>
+              {:else}
+                {paper.title}
+              {/if}
+            </h3>
+            <p class="abstract">{paper.abstract}</p>
+          </article>
+        {/each}
+      </section>
+    {/if}
+
+    {#if inProgressPapers.length > 0}
+      <section class="paper-list">
+        <h2>In Progress</h2>
+        {#each inProgressPapers as paper (paper.title)}
+          <article class="paper-entry">
+             <h3>
+              {#if paper.url}
+                <a href={paper.url} target="_blank" rel="noopener noreferrer">
+                  {paper.title}
+                </a>
+              {:else}
+                {paper.title}
+              {/if}
+            </h3>
+            <p class="abstract">{paper.abstract}</p>
+          </article>
+        {/each}
+      </section>
+    {/if}
+  </main>
+
+  <footer class="footer-nav">
+    <a href="/">&larr; Back Home</a>
+  </footer>
+</div>
+
 <style>
-  :global(body) {
-    margin: 0;
-    padding: 0;
+  .research-container {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    background-color: #0d0d0d;
-    color: #ffffff;
-    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    padding: 1.5rem;
+    max-width: 800px;
+    margin: 0 auto;
+    box-sizing: border-box;
   }
 
-  .container {
-    max-width: 800px;
-    margin: 2rem auto;
-    padding: 1rem;
-    text-align: center;
+  header {
+     text-align: center;
+     margin-bottom: 1.5rem;
+     flex-shrink: 0;
   }
 
   h1 {
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
+    font-size: 2rem;
+    color: var(--text-color-heading);
   }
 
-  .paper {
-    background-color: #1f2937;
-    border-radius: 10px;
-    padding: 1rem;
-    margin-bottom: 1.5rem;
-    text-align: left;
+  .content-area {
+      flex-grow: 1;
+      width: 100%;
   }
 
-  .paper-title {
+  .paper-list {
+    margin-bottom: 2.5rem;
+  }
+
+  h2 {
     font-size: 1.5rem;
-    font-weight: bold;
+    color: var(--text-color-heading);
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--separator-color);
+    padding-bottom: 0.5rem;
+  }
+
+  .paper-entry {
+    margin-bottom: 1.5rem;
+  }
+
+  h3 {
+    font-size: 1.1rem;
     margin-bottom: 0.5rem;
+    font-weight: normal;
+    text-decoration: underline; /* ADDED: Underline paper titles */
   }
 
-  .paper-authors {
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
-    color: #9ca3af;
+  .abstract {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    text-align: left;
+    color: var(--text-color-main);
   }
 
-  .paper-abstract {
-    font-size: 1rem;
-    margin-bottom: 1rem;
+  .footer-nav {
+      margin-top: 2rem;
+      text-align: center;
+      flex-shrink: 0;
+      padding-top: 1rem;
+      border-top: 1px solid var(--separator-color);
   }
 
-  a {
-    text-decoration: none;
-    color: #3498db;
-    font-weight: bold;
-  }
-
-  a:hover {
-    color: #2980b9;
-  }
-
-  .button-row {
-    margin-top: 2rem;
-  }
-
-  button {
-    background-color: #1f2937;
-    color: #ffffff;
-    border: 1px solid #374151;
-    border-radius: 5px;
-    padding: 0.75rem 1.5rem;
-    font-size: 1rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s;
-  }
-
-  button:hover {
-    background-color: #374151;
-  }
 </style>
-
-<div class="container">
-  <h1>Working Papers</h1>
-  {#each papers as paper}
-    <div class="paper">
-      <div class="paper-title">{paper.title}</div>
-      <div class="paper-authors">{paper.authors}</div>
-      <div class="paper-abstract">{paper.abstract}</div>
-      <a href={paper.link} target="_blank" rel="noopener noreferrer">Read Latest Version</a>
-    </div>
-  {/each}
-  <div class="button-row">
-    <button on:click={() => (window.location.href = '/')}>Home</button>
-  </div>
-</div>
