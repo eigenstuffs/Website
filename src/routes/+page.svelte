@@ -1,8 +1,27 @@
 <script>
   import Icon from '@iconify/svelte';
+  import { onMount } from 'svelte';
 
-  const name = "Branden Bohrnsen";
-  const nameLength = name.length;
+  const fullName = "Branden Bohrnsen"; // Store the full name
+  let displayedName = ""; // Reactive variable for the displayed text
+  let showCursor = true; // To control cursor visibility with the text
+
+  const typingSpeed = 150; // Milliseconds per character
+
+  onMount(() => {
+    let charIndex = 0;
+    const intervalId = setInterval(() => {
+      if (charIndex < fullName.length) {
+        displayedName += fullName[charIndex];
+        charIndex++;
+      } else {
+        clearInterval(intervalId);
+        // Optionally hide cursor after typing, or let CSS handle blinking
+      }
+    }, typingSpeed);
+
+    return () => clearInterval(intervalId); // Cleanup on component destroy
+  });
 
   const socialLinks = [
     { label: "Bluesky", href: "https://bsky.app/profile/branden.zip", iconName: "simple-icons:bluesky" },
@@ -16,12 +35,13 @@
     { label: "Research", href: "/research" },
     { label: "CV", href: "/cv" },
     { label: "Games", href: "/games" },
+    // Removed Blog link as per user's last script for this page
   ];
 </script>
 
 <div class="page-container home-container">
-  <h1 class="name-heading" style="--name-length: {nameLength};">
-    {name}
+  <h1 class="name-heading">
+    {displayedName}<span class="blinking-cursor"></span>
   </h1>
 
   <nav class="social-links" aria-label="Social Media Links">
@@ -74,33 +94,35 @@
   }
 
   .name-heading {
-    --steps: var(--name-length, 10);
-    font-size: 2rem;
+    font-size: 2rem; /* Adjusted from 2.5rem in user's provided code */
     color: var(--text-color-heading);
     margin-bottom: 1rem;
-    display: inline-block;
-    position: relative;
-    width: 0;
-    overflow: hidden;
-    white-space: nowrap;
-    border-right: 2px solid var(--cursor-color);
-    animation-name: typing, blink-caret;
-    animation-duration: calc(var(--steps) * var(--typing-speed)), 0.75s;
-    animation-timing-function: steps(var(--steps), start), step-end;
-    animation-delay: 0s;
-    animation-iteration-count: 1, infinite;
-    animation-fill-mode: forwards;
+    display: inline-block; /* Allows it to size to content but still be block-like */
+    position: relative; /* For potential absolute positioning of cursor if needed */
+    /* Properties removed: width, overflow, animation related to 'typing' keyframes */
+    /* Property changed: white-space */
+    white-space: normal; /* Allow text to wrap */
+    /* Ensure it can take up space and align text properly */
+    min-height: 1.2em; /* Keep a min-height to prevent collapse before JS runs */
+    word-break: break-word; /* Helps with long words if any */
   }
 
-  @keyframes typing {
-    from { width: 0; }
-    to { width: calc(var(--steps) * 1ch); }
+  .blinking-cursor {
+    display: inline-block; /* To flow with text */
+    background-color: var(--cursor-color);
+    width: 2px; /* Cursor width */
+    height: 1em; /* Cursor height relative to font size */
+    margin-left: 1px; /* Small space from text */
+    animation: blink-caret-js 0.75s step-end infinite;
+    vertical-align: text-bottom; /* Align cursor better with text */
   }
 
-  @keyframes blink-caret {
-     0%, 100% { border-color: var(--cursor-color); }
-     50% { border-color: transparent; }
+
+  @keyframes blink-caret-js {
+    from, to { background-color: transparent; }
+    50% { background-color: var(--cursor-color); }
   }
+
 
   .social-links {
     display: flex;
@@ -109,8 +131,8 @@
     gap: 1.2rem;
     margin-bottom: 1.5rem;
     flex-wrap: wrap;
-    min-height: 2.5rem; /* ADDED: Reserve vertical space */
-    width: 100%; /* Ensure it takes width for alignment */
+    min-height: 2.5rem;
+    width: 100%;
   }
 
   .social-icon-link {
