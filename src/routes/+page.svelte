@@ -68,8 +68,8 @@
     I enjoy working with multimodal data, and have interests in causal inference
     and measurement.<br><br>
 
-    Prior to my PhD, I graduated from UCLA with Highest Honors in Political Science. I also develop
-    video games, which you can find below.<br><br>
+    Prior to my PhD, I graduated from UCLA with Highest Honors in Political Science, and grew up in Adelaide, South Australia.
+    I also develop video games, which you can find below.<br><br>
 
     Please reach out at any time! My socials are above.
   </p>
