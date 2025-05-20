@@ -65,11 +65,8 @@
     I am interested in political economy. My current work studies how economic and political actors engage
     in the distributive conflict of climate politics.<br><br>
 
-    I enjoy working with multimodal data, and have interests in causal inference
-    and measurement.<br><br>
-
     Prior to my PhD, I graduated from UCLA with Highest Honors in Political Science, and grew up in Adelaide, South Australia.
-    I also develop video games, which you can find below.<br><br>
+    My other interests include game development and piano.<br><br>
 
     Please reach out at any time! My socials are above.
   </p>
