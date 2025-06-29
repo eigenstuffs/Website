@@ -14,21 +14,19 @@
     }
   ];
 
-  $: workingPapers = papers.filter(p => p.status === 'Working Paper');
   $: inProgressPapers = papers.filter(p => p.status === 'In Progress');
-
 </script>
 
-<div class="page-container research-container">
+<div class="research-page-container">
   <header>
     <h1>Research</h1>
   </header>
 
-  <main class="content-area">
-    {#if workingPapers.length > 0}
+  <main>
+    {#if inProgressPapers.length > 0}
       <section class="paper-list">
-        <h2>Working Papers</h2>
-        {#each workingPapers as paper (paper.title)}
+        <h2>In Progress</h2>
+        {#each inProgressPapers as paper (paper.title)}
           <article class="paper-entry">
             <h3>
               {#if paper.url}
@@ -44,58 +42,23 @@
         {/each}
       </section>
     {/if}
-
-    {#if inProgressPapers.length > 0}
-      <section class="paper-list">
-        <h2>In Progress</h2>
-        {#each inProgressPapers as paper (paper.title)}
-          <article class="paper-entry">
-             <h3>
-              {#if paper.url}
-                <a href={paper.url} target="_blank" rel="noopener noreferrer">
-                  {paper.title}
-                </a>
-              {:else}
-                {paper.title}
-              {/if}
-            </h3>
-            <p class="abstract">{paper.abstract}</p>
-          </article>
-        {/each}
-      </section>
-    {/if}
   </main>
-
-  <footer class="footer-nav">
-    <a href="/">&larr; Back Home</a>
-  </footer>
 </div>
 
 <style>
-  .research-container {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    padding: 1.5rem;
-    max-width: 800px;
-    margin: 0 auto;
-    box-sizing: border-box;
+  .research-page-container {
+    width: 100%;
+    max-width: 900px; /* This binds the content to a reasonable width */
+    margin: 0 auto; /* This centers the container on the screen */
   }
 
   header {
-     text-align: center;
-     margin-bottom: 1.5rem;
-     flex-shrink: 0;
+    text-align: center;
+    margin-bottom: 1.5rem;
   }
 
   h1 {
     font-size: 2rem;
-    color: var(--text-color-heading);
-  }
-
-  .content-area {
-      flex-grow: 1;
-      width: 100%;
   }
 
   .paper-list {
@@ -104,9 +67,8 @@
 
   h2 {
     font-size: 1.5rem;
-    color: var(--text-color-heading);
     margin-bottom: 1.5rem;
-    border-bottom: 1px solid var(--separator-color);
+    border-bottom: 1px solid var(--separator-color, #444);
     padding-bottom: 0.5rem;
   }
 
@@ -118,22 +80,15 @@
     font-size: 1.1rem;
     margin-bottom: 0.5rem;
     font-weight: normal;
-    text-decoration: underline; /* ADDED: Underline paper titles */
+  }
+
+  h3 a {
+    text-decoration: underline;
   }
 
   .abstract {
     font-size: 0.95rem;
     line-height: 1.6;
     text-align: left;
-    color: var(--text-color-main);
   }
-
-  .footer-nav {
-      margin-top: 2rem;
-      text-align: center;
-      flex-shrink: 0;
-      padding-top: 1rem;
-      border-top: 1px solid var(--separator-color);
-  }
-
 </style>
