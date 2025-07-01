@@ -4,7 +4,6 @@
   import { page } from '$app/stores';
   import { browser } from '$app/environment';
 
-  // Updated menu items for the horizontal layout
   const menuItems = [
     { path: '/', name: 'Home' },
     { path: '/cv', name: 'CV' },
@@ -15,7 +14,6 @@
   let selectedIndex = menuItems.findIndex(item => item.path === $page.url.pathname);
   if (selectedIndex === -1) selectedIndex = 0;
 
-  // Sound effects remain the same
   let moveSound;
   let selectSound;
 
@@ -26,7 +24,6 @@
     }
   }
 
-  // Updated keydown handler for left/right navigation
   function handleKeydown(event) {
     if (event.key === 'ArrowRight') {
       event.preventDefault();
@@ -41,6 +38,11 @@
       playSound(selectSound);
       goto(menuItems[selectedIndex].path);
     }
+  }
+
+  function handleSelect(index) {
+    selectedIndex = index;
+    playSound(selectSound);
   }
 
   onMount(() => {
@@ -63,7 +65,7 @@
     {#each menuItems as item, index}
       <li>
         <span class="heart" style="visibility: {selectedIndex === index ? 'visible' : 'hidden'};">❤</span>
-        <a href={item.path} class:selected={selectedIndex === index}>
+        <a href={item.path} class:selected={selectedIndex === index} on:click={() => handleSelect(index)} on:touchstart|preventDefault={() => handleSelect(index)}>
           {item.name}
         </a>
       </li>
@@ -76,26 +78,24 @@
     display: inline-block;
     margin-top: 2rem;
   }
-  
-  /* Make the list horizontal */
+ 
   ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
-    display: flex; /* Key change for horizontal layout */
-    gap: 2rem; /* Space between menu items */
-    align-items: center; /* Vertically align items */
+    display: flex;
+    gap: 2rem;
+    align-items: center;
   }
 
   li {
     display: flex;
-    flex-direction: column; /* Stack heart on top of the link */
+    flex-direction: column;
     align-items: center;
   }
-  
-  /* Adjust heart positioning */
+ 
   .heart {
     margin-bottom: 0.5rem;
-    height: 1em; /* Ensure it takes up space even when hidden */
+    height: 1em;
   }
 </style>
