@@ -43,6 +43,7 @@
   function handleSelect(index) {
     selectedIndex = index;
     playSound(selectSound);
+    goto(menuItems[index].path);
   }
 
   onMount(() => {
@@ -65,7 +66,7 @@
     {#each menuItems as item, index}
       <li>
         <span class="heart" style="visibility: {selectedIndex === index ? 'visible' : 'hidden'};">❤</span>
-        <a href={item.path} class:selected={selectedIndex === index} on:click={() => handleSelect(index)} on:touchstart|preventDefault={() => handleSelect(index)}>
+        <a href={item.path} class:selected={selectedIndex === index} on:click|preventDefault={() => handleSelect(index)} on:touchstart|preventDefault={() => handleSelect(index)}>
           {item.name}
         </a>
       </li>
