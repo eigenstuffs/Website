@@ -50,7 +50,7 @@
 
   <p class="bio">
     Hello! I am a <a href="https://fordschool.umich.edu/phd/public-policy-and-political-science">Public Policy and Political Science PhD</a> Student at the University of Michigan.<br><br>
-    I am interested in political economy, broadly defined. My <a href="https://branden.zip/research">current research</a> concerns the distributive conflict of climate policy and the improved measurement of important development outcomes.<br><br>
+    I am interested in political economy, broadly defined. My <a href="https://branden.zip/research">current research agendas</a> involve 1) understanding how and why economic and political actors seek to influence climate policymaking and 2) how to deploy AI for desirable social and economic outcomes.<br><br>
     Please reach out at any time! My socials are above.
   </p>
 </div>
