@@ -49,8 +49,8 @@
   </nav>
 
   <p class="bio">
-    Hello! I am a <a href="https://fordschool.umich.edu/phd/public-policy-and-political-science">Public Policy and Political Science PhD</a> Student at the University of Michigan.<br><br>
-    I am interested in political economy and political behavior. My <a href="https://branden.zip/research">current research agendas</a> ask 1) how and why economic and political actors influence climate policymaking and 2) how to build and scale AI interventions for desirable social and economic outcomes.<br><br>
+    Hello! I am a <a href="https://fordschool.umich.edu/phd/public-policy-and-political-science">Public Policy and Political Science PhD</a> student at the University of Michigan.<br><br>
+    I am interested in political economy and political behavior. My <a href="https://branden.zip/research">current research agendas</a> concern the behavior of interest groups in climate policymaking and the development of AI interventions for social and economic good. My methodological interests are in multimodal data, networks, and experiments.<br><br>
     Please reach out at any time! My socials are above.
   </p>
 </div>
