@@ -19,7 +19,7 @@
 		"svelte-feather-icons": "^4.2.0",
 		"svelte-simple-icons": "^1.0.3",
 		"typescript": "^5.7.2",
-		"vite": "^6.0.3"
+		"vite": "^6.4.1"
 	},
 	"dependencies": {
 		"@rodneylab/svelte-social-icons": "^0.0.31"
