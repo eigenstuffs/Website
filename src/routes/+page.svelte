@@ -144,10 +144,6 @@
         <span class="section-label">cv</span>
         <p>Academic background and experience.</p>
         <div class="btn-row">
-          <a href="/branden_bohrnsen_cv.pdf" download class="btn">
-            <Icon icon="mdi:download" width="16" height="16" />
-            download pdf
-          </a>
           <a href="/branden_bohrnsen_cv.pdf" target="_blank" class="btn">
             <Icon icon="mdi:open-in-new" width="16" height="16" />
             view
