@@ -11,7 +11,7 @@
 </script>
 
 <svelte:head>
-  <title>Branden Bohrnsen | PhD Candidate</title>
+  <title>Branden Bohrnsen</title>
   <meta name="description" content="Branden Bohrnsen is a PhD candidate in Political Science and Public Policy at the University of Michigan, researching political economy and political behavior." />
 </svelte:head>
 
