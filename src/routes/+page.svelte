@@ -142,7 +142,7 @@
     <div class="container">
       <div class="fade-in">
         <span class="section-label">cv</span>
-        <p>Academic background and experience.</p>
+        <p>Here you can learn about my academic background and experience.</p>
         <div class="btn-row">
           <a href="/branden_bohrnsen_cv.pdf" target="_blank" class="btn">
             <Icon icon="mdi:open-in-new" width="16" height="16" />
