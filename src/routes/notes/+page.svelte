@@ -40,7 +40,8 @@
       password = '';
       await loadNotes();
     } else {
-      authError = 'wrong password';
+      const data = await res.json().catch(() => null);
+      authError = data?.error || 'wrong password';
     }
   }
 
