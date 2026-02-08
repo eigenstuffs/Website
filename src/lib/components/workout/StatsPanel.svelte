@@ -73,6 +73,7 @@
           {#each dayExercises as [exKey, ex]}
             {@const latest = getLatestLog(data.logs, exKey)}
             {@const bestSet = latest ? getBestSet(latest) : null}
+            {@const setCount = latest ? latest.sets.length : 0}
             {@const stagLevel = getStagnationLevel(data.logs, exKey)}
             {@const stagLabel = stagnationLabel(stagLevel)}
             {@const stagClass = stagnationClass(stagLevel)}
@@ -86,6 +87,8 @@
               <div class="stat-body">
                 {#if bestSet}
                   <div class="stat-main">
+                    <span class="stat-sets">{setCount}<span class="stat-unit">sets</span></span>
+                    <span class="stat-x">·</span>
                     <span class="stat-weight">{bestSet.weight}<span class="stat-unit">lb</span></span>
                     <span class="stat-x">×</span>
                     <span class="stat-reps">{bestSet.reps}<span class="stat-unit">reps</span></span>
@@ -239,6 +242,11 @@
     display: flex;
     align-items: baseline;
     gap: 0.3rem;
+  }
+
+  .stat-sets {
+    font-size: 1.2rem;
+    color: var(--text-color);
   }
 
   .stat-weight {
