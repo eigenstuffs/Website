@@ -49,11 +49,16 @@
     if (e.key === 'Enter') login();
   }
 
+  function sortNotes() {
+    notes = [...notes].sort((a, b) => (b.lastEdited || 0) - (a.lastEdited || 0));
+  }
+
   async function loadNotes() {
     const res = await fetch('/api/notes');
     if (res.ok) {
       const data = await res.json();
       notes = data.notes;
+      sortNotes();
       if (notes.length > 0 && !activeFilename) {
         selectNote(notes[0].filename);
       }
@@ -95,6 +100,11 @@
 
     if (res.ok && activeFilename === filenameToSave) {
       saveStatus = 'saved';
+      const idx = notes.findIndex((/** @type {{ filename: string }} */ n) => n.filename === filenameToSave);
+      if (idx >= 0) {
+        notes[idx].lastEdited = Date.now();
+        sortNotes();
+      }
     } else if (!res.ok) {
       saveStatus = 'unsaved';
     }
@@ -159,8 +169,15 @@
 <svelte:head>
   <title>Notes</title>
   <style>
-    .main-content {
-      max-width: 1100px !important;
+    :global(.layout-container) {
+      align-items: stretch !important;
+      padding: 1.5rem 1.5rem 2rem !important;
+    }
+
+    :global(.main-content) {
+      max-width: none !important;
+      width: 100% !important;
+      align-items: stretch !important;
       justify-content: flex-start !important;
     }
   </style>
@@ -304,7 +321,7 @@
   .notes-app {
     display: flex;
     width: 100%;
-    height: calc(100vh - 10rem);
+    height: calc(100vh - 7rem);
     border: 1px solid var(--border-color);
     border-radius: 4px;
     overflow: hidden;
@@ -342,7 +359,7 @@
 
   @media (max-width: 768px) {
     .notes-app {
-      height: calc(100vh - 6rem);
+      height: calc(100vh - 5rem);
       border: none;
       border-radius: 0;
     }
