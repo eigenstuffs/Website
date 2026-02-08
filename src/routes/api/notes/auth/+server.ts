@@ -34,13 +34,26 @@ export const POST: RequestHandler = async ({ request, cookies }) => {
 
 	if (!storedPassword) {
 		// Debug: check what env keys exist (names only, no values)
-		const dynamicKeys = Object.keys(env).filter(k => k.includes('NOTE') || k.includes('GIST') || k.includes('GITHUB')).sort();
+		const dynamicKeys = Object.keys(env)
+			.filter(k => /(NOTE|GIST|GITHUB|VERCEL|NODE)/.test(k))
+			.sort();
 		const processKeys = typeof process !== 'undefined'
-			? Object.keys(process.env).filter(k => k.includes('NOTE') || k.includes('GIST') || k.includes('GITHUB')).sort()
+			? Object.keys(process.env)
+				.filter(k => /(NOTE|GIST|GITHUB|VERCEL|NODE)/.test(k))
+				.sort()
 			: [];
+		const runtimeInfo = typeof process !== 'undefined'
+			? {
+				nodeVersion: process.version,
+				vercel: process.env.VERCEL || null,
+				vercelEnv: process.env.VERCEL_ENV || null,
+				vercelRegion: process.env.VERCEL_REGION || null,
+				vercelUrl: process.env.VERCEL_URL || null
+			}
+			: { nodeVersion: null, vercel: null, vercelEnv: null, vercelRegion: null, vercelUrl: null };
 		return json({
 			error: 'NOTES_PASSWORD env var is not set',
-			debug: { dynamicKeys, processKeys }
+			debug: { dynamicKeys, processKeys, runtimeInfo }
 		}, { status: 500 });
 	}
 
