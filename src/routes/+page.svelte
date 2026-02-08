@@ -64,10 +64,11 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
+    width: 100%;
   }
 
   .name-heading {
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     font-weight: normal;
     margin: 0 0 1rem 0;
     min-height: 1.2em;
@@ -111,9 +112,10 @@
   }
 
   .bio {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     line-height: 1.7;
-    max-width: 520px;
+    width: 100%;
+    max-width: 560px;
     text-align: left;
     margin: 0;
   }

@@ -24,6 +24,13 @@
     flex-direction: column;
     width: 90vw;
     max-width: 900px;
+    box-sizing: border-box;
+  }
+
+  @media (max-width: 600px) {
+    .cv-page-content {
+      width: 100%;
+    }
   }
 
   h1 {

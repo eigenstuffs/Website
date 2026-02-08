@@ -84,7 +84,7 @@
   a {
     color: var(--dim-color);
     text-decoration: none;
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     letter-spacing: 0.5px;
     transition: color 0.2s;
   }

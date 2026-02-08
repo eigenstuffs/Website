@@ -79,14 +79,15 @@
   .panel {
     margin: 1.5rem 0;
     width: 100%;
-    max-width: 520px;
+    max-width: 560px;
+    overflow: hidden;
   }
 
   pre {
     margin: 0;
     padding: 0;
     font-family: 'Courier New', 'Lucida Console', monospace;
-    font-size: 11px;
+    font-size: min(12px, calc((100vw - 2rem) / 48));
     line-height: 1.15;
     white-space: pre;
     user-select: none;

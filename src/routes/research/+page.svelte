@@ -92,7 +92,7 @@
   }
 
   .abstract {
-    font-size: 0.88rem;
+    font-size: 0.92rem;
     line-height: 1.7;
     margin: 0;
   }
