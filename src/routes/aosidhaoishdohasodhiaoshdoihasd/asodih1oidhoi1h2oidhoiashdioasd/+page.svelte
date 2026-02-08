@@ -1,5 +1,5 @@
-<div class="page-container blog-post-container">
-  <article class="post-full">
+<div class="blog-post-container">
+  <article>
     <header class="post-header">
       <h1>Reflections on Applying to Graduate School</h1>
       <p class="post-date">2025-05-02</p>
@@ -56,7 +56,48 @@
 </div>
 
 <style>
- /* Styles specific to this page, if any */
- /* Common styles like .blog-post-container, .post-header, .post-content etc. */
- /* should ideally be moved to src/app.css to avoid repetition */
+  .blog-post-container {
+    width: 100%;
+    max-width: 620px;
+  }
+
+  .post-header {
+    margin-bottom: 1.5rem;
+  }
+
+  h1 {
+    font-size: 1.2rem;
+    font-weight: normal;
+    color: var(--text-color-heading);
+    margin: 0 0 0.4rem 0;
+    line-height: 1.4;
+  }
+
+  .post-date {
+    font-size: 0.78rem;
+    color: var(--dim-color);
+    margin: 0;
+  }
+
+  .post-content p {
+    font-size: 0.88rem;
+    line-height: 1.8;
+    margin: 0 0 1rem 0;
+  }
+
+  .footer-nav {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+  }
+
+  .footer-nav a {
+    color: var(--dim-color);
+    font-size: 0.85rem;
+    transition: color 0.2s;
+  }
+
+  .footer-nav a:hover {
+    color: var(--text-color);
+  }
 </style>

@@ -14,24 +14,20 @@
   // postsToList.sort((a, b) => new Date(b.date) - new Date(a.date));
 </script>
 
-<div class="page-container blog-container">
-  <header>
-    <h1>Blog</h1>
-  </header>
+<div class="blog-container">
+  <h1>Blog</h1>
 
-  <main class="content-area">
-    <section class="post-list">
-      {#each postsToList as post (post.url)}
-        <article class="post-entry">
-          <p class="post-date">{post.date}</p>
-          <h3>
-            <a href={post.url}>{post.title}</a>
-          </h3>
-          <p class="post-summary">{post.summary}</p>
-        </article>
-      {/each}
-    </section>
-  </main>
+  <section class="post-list">
+    {#each postsToList as post (post.url)}
+      <article class="post-entry">
+        <span class="post-date">{post.date}</span>
+        <h3>
+          <a href={post.url}>{post.title}</a>
+        </h3>
+        <p class="post-summary">{post.summary}</p>
+      </article>
+    {/each}
+  </section>
 
   <footer class="footer-nav">
     <a href="/">&larr; Back Home</a>
@@ -39,15 +35,73 @@
 </div>
 
 <style>
-  .blog-container { display: flex; flex-direction: column; min-height: 100vh; padding: 1.5rem; max-width: 800px; margin: 0 auto; box-sizing: border-box; }
-  header { text-align: center; margin-bottom: 1.5rem; flex-shrink: 0; }
-  h1 { font-size: 2rem; color: var(--text-color-heading); }
-  .content-area { flex-grow: 1; width: 100%; }
-  .post-list { margin-bottom: 2.5rem; }
-  .post-entry { margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--separator-color); }
-  .post-entry:last-child { border-bottom: none; }
-  .post-date { font-size: 0.85rem; color: var(--text-color-main); opacity: 0.8; margin-bottom: 0.25rem; }
-  h3 { font-size: 1.2rem; margin-bottom: 0.5rem; font-weight: normal; }
-  .post-summary { font-size: 0.95rem; line-height: 1.6; text-align: left; color: var(--text-color-main); }
-  .footer-nav { margin-top: 2rem; text-align: center; flex-shrink: 0; padding-top: 1rem; border-top: 1px solid var(--separator-color); }
+  .blog-container {
+    width: 100%;
+    max-width: 620px;
+  }
+
+  h1 {
+    font-size: 1.3rem;
+    font-weight: normal;
+    color: var(--text-color-heading);
+    margin: 0 0 2rem 0;
+  }
+
+  .post-list {
+    margin-bottom: 2rem;
+  }
+
+  .post-entry {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .post-entry:last-child {
+    border-bottom: none;
+  }
+
+  .post-date {
+    font-size: 0.78rem;
+    color: var(--dim-color);
+  }
+
+  h3 {
+    font-size: 1rem;
+    font-weight: normal;
+    margin: 0.25rem 0 0.5rem 0;
+  }
+
+  h3 a {
+    color: var(--link-color);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 215, 0, 0.3);
+    transition: border-color 0.2s;
+  }
+
+  h3 a:hover {
+    border-color: var(--link-color);
+  }
+
+  .post-summary {
+    font-size: 0.88rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .footer-nav {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+  }
+
+  .footer-nav a {
+    color: var(--dim-color);
+    font-size: 0.85rem;
+    transition: color 0.2s;
+  }
+
+  .footer-nav a:hover {
+    color: var(--text-color);
+  }
 </style>

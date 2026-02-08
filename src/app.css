@@ -1,65 +1,72 @@
-/*
-@font-face {
-    font-family: 'Determination';
-    src: url('/fonts/undertale-deltarune-text-font-extended.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-  }
-*/
-  
 :root {
-    --bg-color: #000000;
-    --text-color: #FFFFFF;
-    --text-color-heading: #FFFFFF;
-    --selected-text-color: #FFFF00;
-    --heart-color: red;
-    --icon-color: #FFFFFF;
-    --icon-hover-color: #BBBBBB;
-    --cursor-color: #FFFFFF;
-    --font-family-main: 'Determination', 'Courier New', monospace;
-    --icon-size: 1.5rem;
+    --bg-color: #0a0a0a;
+    --text-color: #a0a0a0;
+    --text-color-heading: #d4d4d4;
+    --selected-text-color: #FFD700;
+    --icon-color: #666;
+    --icon-hover-color: #FFD700;
+    --cursor-color: #d4d4d4;
+    --link-color: #FFD700;
+    --border-color: #222;
+    --dim-color: #555;
+    --font-family-main: 'Courier New', 'Lucida Console', 'Monaco', monospace;
+    --icon-size: 1.1rem;
   }
-  
+
+  * {
+    box-sizing: border-box;
+  }
+
   body {
     background-color: var(--bg-color);
     color: var(--text-color);
     font-family: var(--font-family-main);
     margin: 0;
-    font-size: 24px;
+    font-size: 15px;
+    line-height: 1.65;
   }
-  
-  /* Default link color */
+
   a {
     color: var(--text-color);
     text-decoration: none;
   }
-  
-  /* This targets only the links inside your main page content */
-  .main-content a {
-    color: var(--selected-text-color);
-    text-decoration: underline;
-  }
-  
-  
-  /* This specifically targets the selected link in your navigation menu */
+
   a.selected {
     color: var(--selected-text-color);
-    text-decoration: none; /* Ensures the selected nav item is not underlined */
   }
-  
+
   .layout-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     min-height: 100vh;
-    padding: 2rem;
-    box-sizing: border-box;
+    padding: 3rem 2rem 2rem;
   }
-  
+
   .main-content {
     flex-grow: 1;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100%;
+    max-width: 720px;
+  }
+
+  ::selection {
+    background: var(--selected-text-color);
+    color: #000;
+  }
+
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 2px;
   }

@@ -23,12 +23,10 @@
   ];
 </script>
 
-<div>
-  <header>
-    <h1>Games</h1>
-  </header>
+<div class="games-page">
+  <h1>Games</h1>
 
-  <main class="games-grid">
+  <div class="games-grid">
     {#each games as game (game.title)}
       <article class="game-entry">
         <h2>{game.title}</h2>
@@ -38,44 +36,49 @@
         <p class="game-description">{game.description}</p>
       </article>
     {/each}
-  </main>
+  </div>
 </div>
 
 <style>
-  header {
-    text-align: center;
-    margin-bottom: 2rem;
+  .games-page {
+    width: 100%;
   }
 
   h1 {
-    font-size: 2rem;
+    font-size: 1.3rem;
+    font-weight: normal;
+    color: var(--text-color-heading);
+    margin: 0 0 2rem 0;
+    text-align: center;
   }
 
-  /* Key styles for the 2x2 grid */
   .games-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
-    max-width: 1200px;
+    gap: 1.5rem;
+    max-width: 900px;
     margin: 0 auto;
   }
 
   .game-entry {
     display: flex;
     flex-direction: column;
-    background-color: #1a1a1a;
     padding: 1rem;
-    border-radius: 4px;
-    border: 1px solid #333;
+    border: 1px solid var(--border-color);
+  }
+
+  .game-entry:hover {
+    border-color: #333;
   }
 
   h2 {
-    font-size: 1.1rem;
-    margin-top: 0;
-    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    font-weight: normal;
+    margin: 0 0 1rem 0;
+    color: var(--text-color-heading);
     text-align: center;
   }
-  
+
   .embed-container {
     width: 100%;
     margin-bottom: 1rem;
@@ -89,13 +92,13 @@
   }
 
   .game-description {
-    font-size: 0.9rem;
-    line-height: 1.5;
+    font-size: 0.85rem;
+    line-height: 1.6;
     text-align: left;
-    margin-top: auto; /* Pushes description to the bottom */
+    margin: 0;
+    margin-top: auto;
   }
 
-  /* Responsive adjustments for smaller screens */
   @media (max-width: 768px) {
     .games-grid {
       grid-template-columns: 1fr;

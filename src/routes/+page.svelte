@@ -1,5 +1,6 @@
 <script>
   import Icon from '@iconify/svelte';
+  import NatureScene from '$lib/components/NatureScene.svelte';
   import { onMount } from 'svelte';
 
   const fullName = "Branden Bohrnsen";
@@ -48,6 +49,8 @@
     {/each}
   </nav>
 
+  <NatureScene />
+
   <p class="bio">
     Hello! I am a <a href="https://fordschool.umich.edu/phd/public-policy-and-political-science">Public Policy and Political Science PhD</a> student at the University of Michigan.<br><br>
     I am interested in political economy and political behavior. My <a href="https://branden.zip/research">current research agendas</a> concern the behavior of interest groups in climate policymaking and the development of AI interventions for social and economic good. My methodological interests are in multimodal data, networks, and experiments.<br><br>
@@ -59,15 +62,16 @@
   .home-container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     text-align: center;
   }
 
   .name-heading {
-    font-size: 2rem;
-    margin-bottom: 1rem;
+    font-size: 1.6rem;
+    font-weight: normal;
+    margin: 0 0 1rem 0;
     min-height: 1.2em;
+    color: var(--text-color-heading);
   }
 
   .blinking-cursor {
@@ -89,11 +93,12 @@
     display: flex;
     justify-content: center;
     gap: 1.2rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.5rem;
   }
 
   .social-icon-link {
     color: var(--icon-color);
+    transition: color 0.2s;
   }
 
   .social-icon-link :global(svg) {
@@ -106,10 +111,21 @@
   }
 
   .bio {
-    font-size: 1rem;
-    line-height: 1.5;
-    max-width: 550px;
-    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    max-width: 520px;
     text-align: left;
+    margin: 0;
+  }
+
+  .bio :global(a) {
+    color: var(--link-color);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 215, 0, 0.3);
+    transition: border-color 0.2s;
+  }
+
+  .bio :global(a:hover) {
+    border-color: var(--link-color);
   }
 </style>

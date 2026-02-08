@@ -14,42 +14,29 @@
   let selectedIndex = menuItems.findIndex(item => item.path === $page.url.pathname);
   if (selectedIndex === -1) selectedIndex = 0;
 
-  let moveSound;
-  let selectSound;
+  function handleKeydown(/** @type {KeyboardEvent} */ event) {
+    const tag = document.activeElement?.tagName;
+    if (tag === 'INPUT' || tag === 'TEXTAREA') return;
 
-  function playSound(sound) {
-    if (sound) {
-      sound.currentTime = 0;
-      sound.play();
-    }
-  }
-
-  function handleKeydown(event) {
     if (event.key === 'ArrowRight') {
       event.preventDefault();
       selectedIndex = (selectedIndex + 1) % menuItems.length;
-      playSound(moveSound);
     } else if (event.key === 'ArrowLeft') {
       event.preventDefault();
       selectedIndex = (selectedIndex - 1 + menuItems.length) % menuItems.length;
-      playSound(moveSound);
     } else if (event.key === 'Enter') {
       event.preventDefault();
-      playSound(selectSound);
       goto(menuItems[selectedIndex].path);
     }
   }
 
-  function handleSelect(index) {
+  function handleSelect(/** @type {number} */ index) {
     selectedIndex = index;
-    playSound(selectSound);
     goto(menuItems[index].path);
   }
 
   onMount(() => {
     if (browser) {
-      moveSound = new Audio('/sounds/snd_menumove_ch1.wav');
-      selectSound = new Audio('/sounds/snd_select_ch1.wav');
       window.addEventListener('keydown', handleKeydown);
     }
   });
@@ -65,8 +52,12 @@
   <ul>
     {#each menuItems as item, index}
       <li>
-        <span class="heart" style="visibility: {selectedIndex === index ? 'visible' : 'hidden'};">❤</span>
-        <a href={item.path} class:selected={selectedIndex === index} on:click|preventDefault={() => handleSelect(index)} on:touchstart|preventDefault={() => handleSelect(index)}>
+        <a
+          href={item.path}
+          class:selected={selectedIndex === index}
+          on:click|preventDefault={() => handleSelect(index)}
+          on:touchstart|preventDefault={() => handleSelect(index)}
+        >
           {item.name}
         </a>
       </li>
@@ -76,27 +67,33 @@
 
 <style>
   nav {
-    display: inline-block;
-    margin-top: 2rem;
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
   }
- 
+
   ul {
-    list-style-type: none;
+    list-style: none;
     padding: 0;
     margin: 0;
     display: flex;
     gap: 2rem;
-    align-items: center;
+    justify-content: center;
   }
 
-  li {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  a {
+    color: var(--dim-color);
+    text-decoration: none;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    transition: color 0.2s;
   }
- 
-  .heart {
-    margin-bottom: 0.5rem;
-    height: 1em;
+
+  a:hover {
+    color: var(--text-color);
+  }
+
+  a.selected {
+    color: var(--selected-text-color);
   }
 </style>

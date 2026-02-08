@@ -7,7 +7,6 @@
   <div class="pdf-embed">
     <iframe
       src="/branden_bohrnsen_cv.pdf"
-      type="application/pdf"
       title="CV PDF Viewer"
       aria-label="Embedded PDF of Curriculum Vitae">
     </iframe>
@@ -20,24 +19,26 @@
 
 <style>
   .cv-page-content {
-    flex-grow: 1; 
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
     width: 90vw;
-    max-width: 1100px;
+    max-width: 900px;
   }
 
   h1 {
-    font-size: 1.8rem;
+    font-size: 1.3rem;
+    font-weight: normal;
+    color: var(--text-color-heading);
+    margin: 0 0 1.5rem 0;
     text-align: center;
-    margin-bottom: 1rem;
-    flex-shrink: 0;
   }
 
   .pdf-embed {
-    flex-grow: 1; 
+    flex-grow: 1;
     display: flex;
-    min-height: 0; 
+    min-height: 0;
+    border: 1px solid var(--border-color);
   }
 
   iframe {

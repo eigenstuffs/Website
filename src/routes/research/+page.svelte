@@ -17,58 +17,55 @@
   $: inProgressPapers = papers.filter(p => p.status === 'In Progress');
 </script>
 
-<div class="research-page-container">
-  <header>
-    <h1>Research</h1>
-  </header>
+<div class="research-page">
+  <h1>Research</h1>
 
-  <main>
-    {#if inProgressPapers.length > 0}
-      <section class="paper-list">
-        <h2>In Progress</h2>
-        {#each inProgressPapers as paper (paper.title)}
-          <article class="paper-entry">
-            <h3>
-              {#if paper.url}
-                <a href={paper.url} target="_blank" rel="noopener noreferrer">
-                  {paper.title}
-                </a>
-              {:else}
+  {#if inProgressPapers.length > 0}
+    <section class="paper-list">
+      <h2>In Progress</h2>
+      {#each inProgressPapers as paper (paper.title)}
+        <article class="paper-entry">
+          <h3>
+            {#if paper.url}
+              <a href={paper.url} target="_blank" rel="noopener noreferrer">
                 {paper.title}
-              {/if}
-            </h3>
-            <p class="abstract">{paper.abstract}</p>
-          </article>
-        {/each}
-      </section>
-    {/if}
-  </main>
+              </a>
+            {:else}
+              {paper.title}
+            {/if}
+          </h3>
+          <p class="abstract">{paper.abstract}</p>
+        </article>
+      {/each}
+    </section>
+  {/if}
 </div>
 
 <style>
-  .research-page-container {
+  .research-page {
     width: 100%;
-    max-width: 900px; /* This binds the content to a reasonable width */
-    margin: 0 auto; /* This centers the container on the screen */
-  }
-
-  header {
-    text-align: center;
-    margin-bottom: 1.5rem;
+    max-width: 620px;
   }
 
   h1 {
-    font-size: 2rem;
+    font-size: 1.3rem;
+    font-weight: normal;
+    color: var(--text-color-heading);
+    margin: 0 0 2rem 0;
   }
 
   .paper-list {
-    margin-bottom: 2.5rem;
+    margin-bottom: 2rem;
   }
 
   h2 {
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
-    border-bottom: 1px solid var(--separator-color, #444);
+    font-size: 0.8rem;
+    font-weight: normal;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--dim-color);
+    margin: 0 0 1.5rem 0;
+    border-bottom: 1px solid var(--border-color);
     padding-bottom: 0.5rem;
   }
 
@@ -77,18 +74,26 @@
   }
 
   h3 {
-    font-size: 1.1rem;
-    margin-bottom: 0.5rem;
+    font-size: 1rem;
     font-weight: normal;
+    margin: 0 0 0.4rem 0;
+    color: var(--text-color-heading);
   }
 
   h3 a {
-    text-decoration: underline;
+    color: var(--link-color);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 215, 0, 0.3);
+    transition: border-color 0.2s;
+  }
+
+  h3 a:hover {
+    border-color: var(--link-color);
   }
 
   .abstract {
-    font-size: 0.95rem;
-    line-height: 1.6;
-    text-align: left;
+    font-size: 0.88rem;
+    line-height: 1.7;
+    margin: 0;
   }
 </style>
