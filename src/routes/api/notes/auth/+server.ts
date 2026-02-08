@@ -1,12 +1,15 @@
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
-import { env } from '$env/dynamic/private';
 import { dev } from '$app/environment';
 import { createHash } from 'crypto';
 
+function getPassword(): string {
+	return (process.env.NOTES_PASSWORD || '').trim();
+}
+
 function getSessionToken(): string {
 	return createHash('sha256')
-		.update(`notes-session:${(env.NOTES_PASSWORD || '').trim()}`)
+		.update(`notes-session:${getPassword()}`)
 		.digest('hex');
 }
 
@@ -19,7 +22,7 @@ export const GET: RequestHandler = async ({ cookies }) => {
 
 export const POST: RequestHandler = async ({ request, cookies }) => {
 	const { password } = await request.json();
-	const storedPassword = (env.NOTES_PASSWORD || '').trim();
+	const storedPassword = getPassword();
 
 	if (!storedPassword) {
 		return json({ error: 'NOTES_PASSWORD env var is not set' }, { status: 500 });
