@@ -1,10 +1,11 @@
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
+import { env } from '$env/dynamic/private';
 import { dev } from '$app/environment';
 import { createHash } from 'crypto';
 
 function getPassword(): string {
-	return (process.env.NOTES_PASSWORD || '').trim();
+	return (env.NOTES_PASSWORD || '').trim();
 }
 
 function getSessionToken(): string {
@@ -29,7 +30,15 @@ export const POST: RequestHandler = async ({ request, cookies }) => {
 	}
 
 	if (password !== storedPassword) {
-		return json({ error: 'Invalid password' }, { status: 401 });
+		return json({
+			error: 'Invalid password',
+			debug: {
+				inputLength: password?.length,
+				storedLength: storedPassword.length,
+				inputType: typeof password,
+				match: password === storedPassword
+			}
+		}, { status: 401 });
 	}
 
 	cookies.set('notes_session', getSessionToken(), {

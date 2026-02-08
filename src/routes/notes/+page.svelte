@@ -41,7 +41,7 @@
       await loadNotes();
     } else {
       const data = await res.json().catch(() => null);
-      authError = data?.error || 'wrong password';
+      authError = data ? JSON.stringify(data) : 'wrong password';
     }
   }
 
