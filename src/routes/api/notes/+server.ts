@@ -3,6 +3,10 @@ import type { RequestHandler } from './$types';
 import { env } from '$env/dynamic/private';
 import { createHash } from 'crypto';
 
+export const config = {
+	runtime: 'nodejs20.x'
+};
+
 function getEnv(key: string): string {
 	return env[key] || (typeof process !== 'undefined' ? process.env[key] : '') || '';
 }

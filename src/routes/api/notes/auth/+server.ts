@@ -4,6 +4,10 @@ import { env } from '$env/dynamic/private';
 import { dev } from '$app/environment';
 import { createHash } from 'crypto';
 
+export const config = {
+	runtime: 'nodejs20.x'
+};
+
 function getPassword(): string {
 	// Try dynamic env first, fall back to process.env
 	const fromDynamic = env.NOTES_PASSWORD;
