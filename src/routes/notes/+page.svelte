@@ -171,12 +171,13 @@
   <style>
     :global(.layout-container) {
       align-items: stretch !important;
-      padding: 1.5rem 1.5rem 2rem !important;
+      padding: 0 !important;
     }
 
     :global(.main-content) {
       max-width: none !important;
       width: 100% !important;
+      height: 100vh !important;
       align-items: stretch !important;
       justify-content: flex-start !important;
     }
@@ -321,9 +322,9 @@
   .notes-app {
     display: flex;
     width: 100%;
-    height: calc(100vh - 7rem);
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
+    height: 100%;
+    border: none;
+    border-radius: 0;
     overflow: hidden;
   }
 
@@ -359,7 +360,7 @@
 
   @media (max-width: 768px) {
     .notes-app {
-      height: calc(100vh - 5rem);
+      height: 100%;
       border: none;
       border-radius: 0;
     }
