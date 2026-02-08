@@ -5,7 +5,10 @@ import { dev } from '$app/environment';
 import { createHash } from 'crypto';
 
 function getPassword(): string {
-	return (env.NOTES_PASSWORD || '').trim();
+	// Try dynamic env first, fall back to process.env
+	const fromDynamic = env.NOTES_PASSWORD;
+	const fromProcess = typeof process !== 'undefined' ? process.env.NOTES_PASSWORD : undefined;
+	return (fromDynamic || fromProcess || '').trim();
 }
 
 function getSessionToken(): string {
@@ -26,7 +29,15 @@ export const POST: RequestHandler = async ({ request, cookies }) => {
 	const storedPassword = getPassword();
 
 	if (!storedPassword) {
-		return json({ error: 'NOTES_PASSWORD env var is not set' }, { status: 500 });
+		// Debug: check what env keys exist (names only, no values)
+		const dynamicKeys = Object.keys(env).filter(k => k.includes('NOTE') || k.includes('GIST') || k.includes('GITHUB')).sort();
+		const processKeys = typeof process !== 'undefined'
+			? Object.keys(process.env).filter(k => k.includes('NOTE') || k.includes('GIST') || k.includes('GITHUB')).sort()
+			: [];
+		return json({
+			error: 'NOTES_PASSWORD env var is not set',
+			debug: { dynamicKeys, processKeys }
+		}, { status: 500 });
 	}
 
 	if (password !== storedPassword) {

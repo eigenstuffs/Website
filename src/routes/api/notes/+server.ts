@@ -3,9 +3,13 @@ import type { RequestHandler } from './$types';
 import { env } from '$env/dynamic/private';
 import { createHash } from 'crypto';
 
+function getEnv(key: string): string {
+	return env[key] || (typeof process !== 'undefined' ? process.env[key] : '') || '';
+}
+
 function getSessionToken(): string {
 	return createHash('sha256')
-		.update(`notes-session:${(env.NOTES_PASSWORD || '').trim()}`)
+		.update(`notes-session:${getEnv('NOTES_PASSWORD').trim()}`)
 		.digest('hex');
 }
 
@@ -14,10 +18,10 @@ function isAuthenticated(cookies: { get: (name: string) => string | undefined })
 }
 
 async function gistFetch(method: string = 'GET', body?: Record<string, unknown>) {
-	return await fetch(`https://api.github.com/gists/${env.GIST_ID}`, {
+	return await fetch(`https://api.github.com/gists/${getEnv('GIST_ID')}`, {
 		method,
 		headers: {
-			Authorization: `token ${env.GITHUB_TOKEN}`,
+			Authorization: `token ${getEnv('GITHUB_TOKEN')}`,
 			Accept: 'application/vnd.github.v3+json',
 			...(body ? { 'Content-Type': 'application/json' } : {})
 		},
