@@ -1,13 +1,8 @@
 <script lang="ts">
-  import { onMount, onDestroy } from 'svelte';
+  import { onMount } from 'svelte';
 
   const W = 79;
   const H = 5;
-  const FRAMES = 20;
-  const MS = 400;
-
-  const CH = [' ', '.', '*', '#'];
-  const CL = ['e', 'd', 'b', 'a'];
 
   function hash(a: number, b: number, c: number): number {
     let h = (a * 374761393 + b * 668265263 + c * 1274126177) | 0;
@@ -15,63 +10,46 @@
     return (h & 0x7FFFFFFF) / 0x7FFFFFFF;
   }
 
-  function genFrame(fi: number): number[][] {
-    const grid: number[][] = [];
-    for (let y = 0; y < H; y++) {
-      const row: number[] = [];
-      for (let x = 0; x < W; x++) {
-        const sv = hash(x, y, 0);
-        let level = 0;
-
-        if (sv < 0.02) {
-          const tw = hash(x, y, fi);
-          level = tw > 0.5 ? 3 : tw > 0.2 ? 2 : 1;
-        } else if (sv < 0.05) {
-          const tw = hash(x, y, fi + 77);
-          level = tw > 0.55 ? 2 : tw > 0.3 ? 1 : 0;
-        }
-
-        row.push(level);
-      }
-      grid.push(row);
-    }
-    return grid;
-  }
-
-  function buildHtml(grid: number[][]): string {
-    let s = '';
-    for (let y = 0; y < H; y++) {
-      let x = 0;
-      while (x < W) {
-        const c = CL[grid[y][x]];
-        let run = '';
-        while (x < W && CL[grid[y][x]] === c) { run += CH[grid[y][x]]; x++; }
-        s += `<span class="${c}">${run}</span>`;
-      }
-      if (y < H - 1) s += '\n';
-    }
-    return s;
-  }
-
-  let htmlFrames: string[] = [];
-  let idx = 0;
-  let timer: ReturnType<typeof setInterval> | undefined;
+  let html = '';
   let ok = false;
 
   onMount(() => {
-    for (let i = 0; i < FRAMES; i++) {
-      htmlFrames.push(buildHtml(genFrame(i)));
+    let s = '';
+    for (let y = 0; y < H; y++) {
+      for (let x = 0; x < W; x++) {
+        const sv = hash(x, y, 0);
+        if (sv < 0.02) {
+          // Bright star — slow, prominent pulse with glow
+          const dur = (3 + hash(x, y, 2) * 4).toFixed(1);
+          const del = (hash(x, y, 3) * -8).toFixed(1);
+          const peak = (0.8 + hash(x, y, 4) * 0.2).toFixed(2);
+          s += `<span class="s3" style="animation-duration:${dur}s;animation-delay:${del}s;--p:${peak}">#</span>`;
+        } else if (sv < 0.04) {
+          // Medium star — moderate pulse
+          const dur = (2.5 + hash(x, y, 2) * 5).toFixed(1);
+          const del = (hash(x, y, 3) * -8).toFixed(1);
+          const peak = (0.4 + hash(x, y, 4) * 0.3).toFixed(2);
+          s += `<span class="s2" style="animation-duration:${dur}s;animation-delay:${del}s;--p:${peak}">*</span>`;
+        } else if (sv < 0.07) {
+          // Dim star — gentle shimmer
+          const dur = (2 + hash(x, y, 2) * 6).toFixed(1);
+          const del = (hash(x, y, 3) * -8).toFixed(1);
+          const peak = (0.15 + hash(x, y, 4) * 0.2).toFixed(2);
+          s += `<span class="s1" style="animation-duration:${dur}s;animation-delay:${del}s;--p:${peak}">.</span>`;
+        } else {
+          s += ' ';
+        }
+      }
+      if (y < H - 1) s += '\n';
     }
+    html = s;
     ok = true;
-    timer = setInterval(() => { idx = (idx + 1) % FRAMES; }, MS);
   });
-
-  onDestroy(() => { if (timer) clearInterval(timer); });
 </script>
 
 {#if ok}
 <div class="panel" aria-hidden="true">
-  <pre>{@html htmlFrames[idx]}</pre>
+  <pre>{@html html}</pre>
 </div>
 {/if}
 
@@ -93,8 +71,63 @@
     user-select: none;
   }
 
-  pre :global(.a) { color: #ffd700; text-shadow: 0 0 4px rgba(255,215,0,0.18); }
-  pre :global(.b) { color: rgba(255,215,0,0.40); }
-  pre :global(.d) { color: rgba(255,215,0,0.08); }
-  pre :global(.e) { color: rgba(255,215,0,0.012); }
+  /* Bright stars — gold with glow halo */
+  pre :global(.s3) {
+    color: #ffd700;
+    animation-name: glow-bright;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-fill-mode: both;
+  }
+
+  /* Medium stars — softer pulse */
+  pre :global(.s2) {
+    color: #ffd700;
+    animation-name: glow-mid;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-fill-mode: both;
+  }
+
+  /* Dim stars — subtle fade */
+  pre :global(.s1) {
+    color: #ffd700;
+    animation-name: glow-dim;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-fill-mode: both;
+  }
+
+  @keyframes glow-bright {
+    0%, 100% {
+      opacity: 0.06;
+      text-shadow: none;
+    }
+    50% {
+      opacity: var(--p, 0.9);
+      text-shadow:
+        0 0 6px rgba(255, 215, 0, 0.45),
+        0 0 14px rgba(255, 215, 0, 0.18);
+    }
+  }
+
+  @keyframes glow-mid {
+    0%, 100% {
+      opacity: 0.03;
+      text-shadow: none;
+    }
+    50% {
+      opacity: var(--p, 0.5);
+      text-shadow: 0 0 4px rgba(255, 215, 0, 0.18);
+    }
+  }
+
+  @keyframes glow-dim {
+    0%, 100% {
+      opacity: 0.015;
+    }
+    50% {
+      opacity: var(--p, 0.18);
+    }
+  }
 </style>
