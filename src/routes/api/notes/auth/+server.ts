@@ -6,7 +6,7 @@ import { createHash } from 'crypto';
 
 function getSessionToken(): string {
 	return createHash('sha256')
-		.update(`notes-session:${env.NOTES_PASSWORD}`)
+		.update(`notes-session:${(env.NOTES_PASSWORD || '').trim()}`)
 		.digest('hex');
 }
 
@@ -19,8 +19,13 @@ export const GET: RequestHandler = async ({ cookies }) => {
 
 export const POST: RequestHandler = async ({ request, cookies }) => {
 	const { password } = await request.json();
+	const storedPassword = (env.NOTES_PASSWORD || '').trim();
 
-	if (!env.NOTES_PASSWORD || password !== env.NOTES_PASSWORD) {
+	if (!storedPassword) {
+		return json({ error: 'NOTES_PASSWORD env var is not set' }, { status: 500 });
+	}
+
+	if (password !== storedPassword) {
 		return json({ error: 'Invalid password' }, { status: 401 });
 	}
 

@@ -5,7 +5,7 @@ import { createHash } from 'crypto';
 
 function getSessionToken(): string {
 	return createHash('sha256')
-		.update(`notes-session:${env.NOTES_PASSWORD}`)
+		.update(`notes-session:${(env.NOTES_PASSWORD || '').trim()}`)
 		.digest('hex');
 }
 
