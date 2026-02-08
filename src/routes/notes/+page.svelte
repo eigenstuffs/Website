@@ -172,6 +172,8 @@
     :global(.layout-container) {
       align-items: stretch !important;
       padding: 0 !important;
+      width: 100vw !important;
+      min-height: 100vh !important;
     }
 
     :global(.main-content) {
@@ -321,8 +323,8 @@
   /* Notes app layout */
   .notes-app {
     display: flex;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     border: none;
     border-radius: 0;
     overflow: hidden;
@@ -360,7 +362,7 @@
 
   @media (max-width: 768px) {
     .notes-app {
-      height: 100%;
+      height: 100vh;
       border: none;
       border-radius: 0;
     }
