@@ -8,6 +8,7 @@
     { path: '/', name: 'Home' },
     { path: '/cv', name: 'CV' },
     { path: '/research', name: 'Research' },
+    { path: '/blog', name: 'Blog' },
     { path: '/games', name: 'Games' },
   ];
 
