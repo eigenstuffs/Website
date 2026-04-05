@@ -1,6 +1,6 @@
 <script>
   const postsToList = [
-     {
+    {
       title: "Reflections on the Grad School Application Cycle",
       url: "/blog/grad-school-applications",
       date: "2025-05-02",
@@ -9,40 +9,63 @@
   ];
 </script>
 
-<div class="page-container blog-container">
-  <header>
-    <h1>Blog</h1>
-  </header>
+<div class="blog-page">
+  <h1 class="page-title">Blog</h1>
 
-  <main class="content-area">
-    <section class="post-list">
-      {#each postsToList as post (post.url)}
-        <article class="post-entry">
-          <p class="post-date">{post.date}</p>
-          <h3>
-            <a href={post.url}>{post.title}</a>
-          </h3>
-          <p class="post-summary">{post.summary}</p>
-        </article>
-      {/each}
-    </section>
-  </main>
-
-  <footer class="footer-nav">
-    <a href="/">&larr; Back Home</a>
-  </footer>
+  <section class="post-list">
+    {#each postsToList as post (post.url)}
+      <article class="post-entry">
+        <time class="post-date">{post.date}</time>
+        <h3><a href={post.url}>{post.title}</a></h3>
+        <p class="post-summary">{post.summary}</p>
+      </article>
+    {/each}
+  </section>
 </div>
 
 <style>
-  .blog-container { display: flex; flex-direction: column; min-height: 100vh; padding: 1.5rem; max-width: 800px; margin: 0 auto; box-sizing: border-box; }
-  header { text-align: center; margin-bottom: 1.5rem; flex-shrink: 0; }
-  h1 { font-size: 2rem; color: var(--text-color-heading); }
-  .content-area { flex-grow: 1; width: 100%; }
-  .post-list { margin-bottom: 2.5rem; }
-  .post-entry { margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--separator-color); }
-  .post-entry:last-child { border-bottom: none; }
-  .post-date { font-size: 0.85rem; color: var(--text-color-main); opacity: 0.8; margin-bottom: 0.25rem; }
-  h3 { font-size: 1.2rem; margin-bottom: 0.5rem; font-weight: normal; }
-  .post-summary { font-size: 0.95rem; line-height: 1.6; text-align: left; color: var(--text-color-main); }
-  .footer-nav { margin-top: 2rem; text-align: center; flex-shrink: 0; padding-top: 1rem; border-top: 1px solid var(--separator-color); }
+  .blog-page {
+    width: 100%;
+  }
+
+  .post-list {
+    margin: 0;
+  }
+
+  .post-entry {
+    margin-bottom: 2.5rem;
+  }
+
+  .post-date {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--dim);
+    letter-spacing: 0.02em;
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+
+  h3 {
+    font-size: 1.35rem;
+    font-weight: 600;
+    margin: 0 0 0.4rem 0;
+    line-height: 1.3;
+  }
+
+  h3 a {
+    color: var(--text-heading);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  h3 a:hover {
+    color: var(--accent);
+  }
+
+  .post-summary {
+    font-size: 1rem;
+    line-height: 1.65;
+    margin: 0;
+    color: var(--dim);
+  }
 </style>

@@ -1,133 +1,140 @@
 <script>
   import Icon from '@iconify/svelte';
-  import NatureScene from '$lib/components/NatureScene.svelte';
-  import { onMount } from 'svelte';
-
-  const fullName = "Branden Bohrnsen";
-  let displayedName = "";
-  const typingSpeed = 150;
-
-  onMount(() => {
-    let charIndex = 0;
-    const intervalId = setInterval(() => {
-      if (charIndex < fullName.length) {
-        displayedName += fullName[charIndex];
-        charIndex++;
-      } else {
-        clearInterval(intervalId);
-      }
-    }, typingSpeed);
-    return () => clearInterval(intervalId);
-  });
+  import NetworkField from '$lib/components/NetworkField.svelte';
 
   const socialLinks = [
-    { label: "Bluesky", href: "https://bsky.app/profile/branden.zip", iconName: "simple-icons:bluesky" },
-    { label: "X (Twitter)", href: "https://x.com/eigenstuffs", iconName: "simple-icons:x" },
-    { label: "GitHub", href: "https://github.com/eigenstuffs", iconName: "simple-icons:github" },
-    { label: "Email", href: "mailto:bohrnsen@umich.edu", iconName: "mdi:email-outline" },
-    { label: "LinkedIn", href: "https://linkedin.com/in/brandenbohrnsen", iconName: "simple-icons:linkedin" },
+    { label: "bsky", href: "https://bsky.app/profile/branden.zip", iconName: "simple-icons:bluesky" },
+    { label: "x", href: "https://x.com/eigenstuffs", iconName: "simple-icons:x" },
+    { label: "github", href: "https://github.com/eigenstuffs", iconName: "simple-icons:github" },
+    { label: "linkedin", href: "https://linkedin.com/in/brandenbohrnsen", iconName: "simple-icons:linkedin" },
   ];
 </script>
 
-<div class="home-container">
-  <h1 class="name-heading">
-    {displayedName}<span class="blinking-cursor"></span>
-  </h1>
+<div class="home">
+  <h1>Branden Bohrnsen</h1>
+  <p class="role">PhD Student, Public Policy & Political Science, University of Michigan</p>
 
-  <nav class="social-links" aria-label="Social Media Links">
-    {#each socialLinks as link (link.label)}
+  <nav class="social-row" aria-label="Social links">
+    {#each socialLinks as link}
       <a
         href={link.href}
         target={link.href.startsWith('mailto:') ? '_self' : '_blank'}
         rel="noopener noreferrer"
-        aria-label={link.label}
-        class="social-icon-link"
-        title={link.label}
+        class="pill"
       >
         <Icon icon={link.iconName} />
+        {link.label}
       </a>
     {/each}
   </nav>
 
-  <NatureScene />
+  <NetworkField />
 
-  <p class="bio">
-    Hello! I am a <a href="https://fordschool.umich.edu/phd/public-policy-and-political-science">Public Policy and Political Science PhD</a> student at the University of Michigan.<br><br>
-    I am interested in political economy and political behavior. My <a href="https://branden.zip/research">current research agendas</a> concern the behavior of interest groups in climate policymaking and the development of AI interventions for social and economic good. My methodological interests are in multimodal data, networks, and experiments.<br><br>
-    Please reach out at any time! My socials are above.
-  </p>
+  <div class="bio">
+    <p>
+      Hello! I am a PhD student in Public Policy & Political Science at the University of Michigan's Ford School.
+    </p>
+    <p>
+      My research concerns the politics of disruptive technologies. I am curious as to how societies govern and respond to transformative forces like renewable energy and AI, as well as how the winners and losers created by these technologies engage in distributive conflict. I enjoy novel data collection and employing tools from causal inference and machine learning in my work.
+    </p>
+    <p>
+      I am currently affiliated with the Climate Politics Lab at Michigan and the Free Systems Lab at the Stanford Graduate School of Business.
+    </p>
+    <p class="email">bohrnsen@umich.edu</p>
+  </div>
 </div>
 
 <style>
-  .home-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+  .home {
     width: 100%;
   }
 
-  .name-heading {
-    font-size: 1.8rem;
-    font-weight: normal;
-    margin: 0 0 1rem 0;
-    min-height: 1.2em;
-    color: var(--text-color-heading);
-  }
-
-  .blinking-cursor {
+  h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.25rem;
+    position: relative;
     display: inline-block;
-    background-color: var(--cursor-color);
-    width: 2px;
-    height: 1em;
-    margin-left: 1px;
-    animation: blink-caret-js 0.75s step-end infinite;
-    vertical-align: text-bottom;
   }
 
-  @keyframes blink-caret-js {
-    from, to { background-color: transparent; }
-    50% { background-color: var(--cursor-color); }
+  h1::after {
+    content: '';
+    display: block;
+    width: 3rem;
+    height: 4px;
+    background: var(--accent);
+    margin-top: 0.35rem;
+    border-radius: 2px;
   }
 
-  .social-links {
+  .role {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--dim);
+    margin: 0.75rem 0 1.5rem;
+    letter-spacing: 0.02em;
+  }
+
+  .social-row {
     display: flex;
-    justify-content: center;
-    gap: 1.2rem;
-    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
   }
 
-  .social-icon-link {
-    color: var(--icon-color);
-    transition: color 0.2s;
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    padding: 0.3rem 0.65rem;
+    border: 1.5px solid var(--border);
+    border-radius: 100px;
+    color: var(--dim);
+    transition: color 0.15s, border-color 0.15s, background 0.15s;
   }
 
-  .social-icon-link :global(svg) {
-    width: var(--icon-size);
-    height: var(--icon-size);
+  .pill:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+    background: rgba(194, 65, 12, 0.05);
   }
 
-  .social-icon-link:hover {
-    color: var(--icon-hover-color);
+  .pill :global(svg) {
+    width: 0.85rem;
+    height: 0.85rem;
   }
 
   .bio {
-    font-size: 0.95rem;
-    line-height: 1.7;
-    width: 100%;
-    max-width: 560px;
-    text-align: left;
-    margin: 0;
+    max-width: 38rem;
   }
 
-  .bio :global(a) {
-    color: var(--link-color);
-    text-decoration: none;
-    border-bottom: 1px solid rgba(255, 215, 0, 0.3);
-    transition: border-color 0.2s;
+  .bio p {
+    margin: 0 0 1rem;
   }
 
-  .bio :global(a:hover) {
-    border-color: var(--link-color);
+  .bio a {
+    color: var(--accent);
+    border-bottom: 1.5px solid rgba(194, 65, 12, 0.25);
+    transition: border-color 0.15s;
+  }
+
+  .bio a:hover {
+    border-color: var(--accent);
+  }
+
+  .bio .email {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--dim);
+    margin-top: 0.25rem;
+  }
+
+  @media (max-width: 600px) {
+    h1 {
+      font-size: 2.4rem;
+    }
   }
 </style>

@@ -1,83 +1,119 @@
 :root {
-    --bg-color: #0a0a0a;
-    --text-color: #a0a0a0;
-    --text-color-heading: #d4d4d4;
-    --selected-text-color: #FFD700;
-    --icon-color: #666;
-    --icon-hover-color: #FFD700;
-    --cursor-color: #d4d4d4;
-    --link-color: #FFD700;
-    --border-color: #222;
-    --dim-color: #555;
-    --font-family-main: 'Courier New', 'Lucida Console', 'Monaco', monospace;
-    --icon-size: 1.1rem;
-  }
+  --bg: #faf8f5;
+  --text: #1c1917;
+  --text-heading: #0f0e0d;
+  --accent: #c2410c;
+  --accent-secondary: #4a6741;
+  --surface: #f0ece6;
+  --border: #d6d0c4;
+  --dim: #78716c;
+  --font-display: 'Space Grotesk', system-ui, sans-serif;
+  --font-body: 'Source Serif 4', Georgia, serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
 
-  * {
-    box-sizing: border-box;
-  }
+  /* Legacy aliases for private pages (workout, notes) */
+  --bg-color: var(--bg);
+  --text-color: var(--text);
+  --text-color-heading: var(--text-heading);
+  --selected-text-color: var(--accent);
+  --link-color: var(--accent);
+  --icon-color: var(--dim);
+  --icon-hover-color: var(--accent);
+  --cursor-color: var(--text);
+  --border-color: var(--border);
+  --dim-color: var(--dim);
+  --font-family-main: var(--font-mono);
+  --icon-size: 1rem;
+  --glow-color: rgba(194, 65, 12, 0.08);
+}
 
-  html {
-    font-size: 120%;
-  }
+* {
+  box-sizing: border-box;
+}
 
-  body {
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    font-family: var(--font-family-main);
-    margin: 0;
-    font-size: 1rem;
-    line-height: 1.65;
-    overflow-x: hidden;
-  }
+html {
+  font-size: 100%;
+}
 
-  a {
-    color: var(--text-color);
-    text-decoration: none;
-  }
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  margin: 0;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
-  a.selected {
-    color: var(--selected-text-color);
-  }
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  color: var(--text-heading);
+  line-height: 1.2;
+  margin: 0;
+}
 
-  .layout-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
-    padding: 3rem 2rem 2rem;
-  }
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color 0.15s;
+}
 
+a:hover {
+  color: var(--text);
+}
+
+.layout-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex-grow: 1;
+  width: 100%;
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+}
+
+@media (max-width: 600px) {
   .main-content {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    max-width: 780px;
+    padding: 1.25rem 1rem 3rem;
   }
+}
 
-  @media (max-width: 600px) {
-    .layout-container {
-      padding: 2rem 1rem 1.5rem;
-    }
-  }
+::selection {
+  background: rgba(194, 65, 12, 0.18);
+  color: var(--text);
+}
 
-  ::selection {
-    background: var(--selected-text-color);
-    color: #000;
-  }
+::-webkit-scrollbar {
+  width: 6px;
+}
 
-  ::-webkit-scrollbar {
-    width: 4px;
-  }
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
 
-  ::-webkit-scrollbar-track {
-    background: transparent;
-  }
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
 
-  ::-webkit-scrollbar-thumb {
-    background: var(--border-color);
-    border-radius: 2px;
+::-webkit-scrollbar-thumb:hover {
+  background: var(--dim);
+}
+
+.page-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  letter-spacing: -0.02em;
+}
+
+@media (max-width: 600px) {
+  .page-title {
+    font-size: 2rem;
   }
+}

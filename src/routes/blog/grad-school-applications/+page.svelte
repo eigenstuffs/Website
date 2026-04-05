@@ -1,8 +1,8 @@
-<div class="page-container blog-post-container">
-  <article class="post-full">
+<div class="article-page">
+  <article>
     <header class="post-header">
       <h1>Reflections on Applying to Graduate School</h1>
-      <p class="post-date">2025-05-02</p>
+      <time class="post-date">2025-05-02</time>
     </header>
 
     <section class="post-content">
@@ -24,10 +24,12 @@
         sole other admittee). In my (biased) opinion, it's the best department in the world to study climate politics and
         Southeast Asia.
       </p>
+      <p>
         I'll first outline what I perceive my own strengths to be. I'm fortunate to have worked with several established
         faculty, who I'm grateful were in my corner and were happy to write my letters. I have no doubt that the connections
         I made at UCLA were critical in my eventual acceptances. I highly encourage undergraduates to seek out research opportunities,
         even if unpaid, because the mentorship and training you will receive is priceless.
+      </p>
       <p>
         Following this, I suggest that undergraduates take PhD courses whenever possible. In my two years at UCLA, I took the first-year
         series in quantitative methods, which made for a stronger writing sample and a great quantitative signal on my transcript. It
@@ -47,13 +49,64 @@
         thematically different than other schools until the application deadline, and it certainly showed. Make sure you've looked at every
         page of the form and keep this information handy!
       </p>
-      </section>
+    </section>
   </article>
 
   <footer class="footer-nav">
-    <a href="/blog">&larr; Back to Blog List</a>
+    <a href="/blog">← back to posts</a>
   </footer>
 </div>
 
 <style>
+  .article-page {
+    width: 100%;
+  }
+
+  .post-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid var(--border);
+  }
+
+  h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin: 0 0 0.5rem 0;
+    line-height: 1.25;
+  }
+
+  .post-date {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--dim);
+    letter-spacing: 0.02em;
+  }
+
+  .post-content p {
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    margin: 0 0 1.25rem 0;
+  }
+
+  .post-content p:last-child {
+    margin-bottom: 0;
+  }
+
+  .footer-nav {
+    margin-top: 3rem;
+    padding-top: 1.25rem;
+    border-top: 2px solid var(--border);
+  }
+
+  .footer-nav a {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--dim);
+    transition: color 0.15s;
+  }
+
+  .footer-nav a:hover {
+    color: var(--accent);
+  }
 </style>

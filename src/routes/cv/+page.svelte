@@ -1,51 +1,56 @@
-<script>
-</script>
+<div class="cv-page">
+  <h1 class="page-title">Curriculum Vitae</h1>
 
-<div class="cv-page-content">
-  <h1>Curriculum Vitae</h1>
+  <a href="/branden_bohrnsen_cv.pdf" download class="download-btn">
+    Download PDF ↓
+  </a>
 
-  <div class="pdf-embed">
+  <div class="pdf-card">
     <iframe
       src="/branden_bohrnsen_cv.pdf"
       title="CV PDF Viewer"
       aria-label="Embedded PDF of Curriculum Vitae">
     </iframe>
     <p class="fallback">
-        It appears your browser doesn't support embedding PDFs directly.
-        You can <a href="/branden_bohrnsen_cv.pdf" download>download the CV directly</a> instead.
+      Your browser doesn't support embedded PDFs.
+      <a href="/branden_bohrnsen_cv.pdf" download>Download the CV directly</a>.
     </p>
   </div>
 </div>
 
 <style>
-  .cv-page-content {
+  .cv-page {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    width: 90vw;
-    max-width: 900px;
-    box-sizing: border-box;
+    width: 100%;
   }
 
-  @media (max-width: 600px) {
-    .cv-page-content {
-      width: 100%;
-    }
+  .download-btn {
+    display: inline-block;
+    align-self: flex-start;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    padding: 0.5rem 1rem;
+    border: 2px solid var(--accent);
+    border-radius: 4px;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+    transition: background 0.15s, color 0.15s;
   }
 
-  h1 {
-    font-size: 1.3rem;
-    font-weight: normal;
-    color: var(--text-color-heading);
-    margin: 0 0 1.5rem 0;
-    text-align: center;
+  .download-btn:hover {
+    background: var(--accent);
+    color: #fff;
   }
 
-  .pdf-embed {
+  .pdf-card {
     flex-grow: 1;
     display: flex;
-    min-height: 0;
-    border: 1px solid var(--border-color);
+    background: var(--surface);
+    border: 2px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
   }
 
   iframe {
@@ -59,12 +64,12 @@
   .fallback {
     display: none;
     text-align: center;
-    padding: 1rem;
+    padding: 1.5rem;
     font-size: 0.9rem;
   }
 
   .fallback a {
-    color: var(--link-color);
+    color: var(--accent);
     text-decoration: underline;
   }
 </style>

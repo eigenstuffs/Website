@@ -19,19 +19,16 @@
       for (let x = 0; x < W; x++) {
         const sv = hash(x, y, 0);
         if (sv < 0.02) {
-          // Bright star — slow, prominent pulse with glow
           const dur = (3 + hash(x, y, 2) * 4).toFixed(1);
           const del = (hash(x, y, 3) * -8).toFixed(1);
           const peak = (0.8 + hash(x, y, 4) * 0.2).toFixed(2);
           s += `<span class="s3" style="animation-duration:${dur}s;animation-delay:${del}s;--p:${peak}">#</span>`;
         } else if (sv < 0.04) {
-          // Medium star — moderate pulse
           const dur = (2.5 + hash(x, y, 2) * 5).toFixed(1);
           const del = (hash(x, y, 3) * -8).toFixed(1);
           const peak = (0.4 + hash(x, y, 4) * 0.3).toFixed(2);
           s += `<span class="s2" style="animation-duration:${dur}s;animation-delay:${del}s;--p:${peak}">*</span>`;
         } else if (sv < 0.07) {
-          // Dim star — gentle shimmer
           const dur = (2 + hash(x, y, 2) * 6).toFixed(1);
           const del = (hash(x, y, 3) * -8).toFixed(1);
           const peak = (0.15 + hash(x, y, 4) * 0.2).toFixed(2);
@@ -57,21 +54,20 @@
   .panel {
     margin: 1.5rem 0;
     width: 100%;
-    max-width: 560px;
+    max-width: 32rem;
     overflow: hidden;
   }
 
   pre {
     margin: 0;
     padding: 0;
-    font-family: 'Courier New', 'Lucida Console', monospace;
-    font-size: min(12px, calc((100vw - 2rem) / 48));
+    font-family: var(--font-family-main);
+    font-size: min(0.375rem, calc((100vw - 2rem) / 48));
     line-height: 1.15;
     white-space: pre;
     user-select: none;
   }
 
-  /* Bright stars — gold with glow halo */
   pre :global(.s3) {
     color: #ffd700;
     animation-name: glow-bright;
@@ -80,7 +76,6 @@
     animation-fill-mode: both;
   }
 
-  /* Medium stars — softer pulse */
   pre :global(.s2) {
     color: #ffd700;
     animation-name: glow-mid;
@@ -89,7 +84,6 @@
     animation-fill-mode: both;
   }
 
-  /* Dim stars — subtle fade */
   pre :global(.s1) {
     color: #ffd700;
     animation-name: glow-dim;

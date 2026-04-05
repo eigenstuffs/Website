@@ -3,9 +3,9 @@
   import '../app.css';
 </script>
 
+<Nav />
 <div class="layout-container">
   <main class="main-content">
     <slot />
   </main>
-  <Nav />
 </div>
