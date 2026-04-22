@@ -35,7 +35,7 @@
       Hello! I am a PhD student in Public Policy & Political Science at the University of Michigan's Ford School.
     </p>
     <p>
-      My research concerns the politics of disruptive technologies. I am curious as to how societies govern and respond to transformative forces like renewable energy and AI, as well as how the winners and losers created by these technologies engage in distributive conflict. I enjoy novel data collection and employing tools from causal inference and machine learning in my work.
+      My research concerns the politics of economic transition. I am curious as to how societies govern and respond to transformative forces like renewable energy and AI, as well as how the winners and losers created by these disruptions engage in distributive conflict. A unifying methodological thread across my work is the construction of novel datasets from unconventional sources, including YouTube videos, heterogeneous census records, and unstructured public comment archives.
     </p>
     <p>
       I am currently affiliated with the Climate Politics Lab at Michigan and the Free Systems Lab at the Stanford Graduate School of Business.
