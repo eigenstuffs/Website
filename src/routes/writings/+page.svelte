@@ -2,8 +2,8 @@
   const writings = [
     {
       title: "Inside The Roblox Casino",
-      subtitle: "The gambling mechanics hidden inside children's games",
-      url: "https://substack.com/home/post/p-189885936",
+      subtitle: "How platform incentives are turning children's games into casinos",
+      url: "https://freesystems.substack.com/p/inside-the-roblox-casino",
       coauthors: ["Andy Hall"],
       venue: "Free Systems",
       date: "Mar 2026"
