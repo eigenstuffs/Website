@@ -4,6 +4,7 @@
   const navItems = [
     { path: '/cv', name: 'cv' },
     { path: '/research', name: 'research' },
+    { path: '/writings', name: 'writings' },
     { path: '/games', name: 'games' },
   ];
 
