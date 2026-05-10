@@ -2,9 +2,9 @@
   const workingPapers = [
     {
       title: "Portable Legacies: Copperbelt Origins and Interethnic Marriage in Zambia",
-      url: null,
+      url: "/copperbelt.pdf",
       coauthors: ["Ashton Butler"],
-      abstract: "Can institutions create cross-ethnic ties that outlast the places that produced them? This article studies Copperbelt-born Zambian men after the restructuring of Zambia's mining economy. Using IPUMS census microdata from 2000 and 2010, we compare married Copperbelt-born husbands with other married men living in the same non-Copperbelt constituencies. The outcome is ethnic-block outmarriage adjusted for the local availability of out-group wives. Copperbelt-born husbands are more likely than otherwise similar destination residents to be in cross-block marriages, even after accounting for current marriage markets and standard observables. The results suggest that institutionally dense settings can leave social traces that remain visible after geographic mobility and institutional change, linking debates over ethnic boundaries to the durable social effects of place-based institutions.",
+      abstract: "Can institutions create cross-ethnic ties that outlast the places that produced them? Using IPUMS census microdata from 2000 and 2010, we compare Copperbelt-born Zambian husbands with other married men in the same non-Copperbelt constituencies after the restructuring of Zambia's mining economy. Copperbelt-born husbands are more likely to be in cross-block marriages even after accounting for local marriage markets and standard observables. The results suggest that institutionally dense settings can leave social traces that remain visible after geographic mobility and institutional change.",
     }
   ];
 
