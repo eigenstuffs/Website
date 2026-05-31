@@ -35,7 +35,7 @@
       Hello! I am a PhD student in Public Policy & Political Science at the University of Michigan's Ford School.
     </p>
     <p>
-      My research concerns the politics of economic transition. I am curious as to how societies govern and respond to transformative forces like renewable energy and AI, as well as how the winners and losers created by these disruptions engage in distributive conflict. A unifying methodological thread across my work is the construction of novel datasets from unconventional sources, including YouTube videos, heterogeneous census records, and unstructured public comment archives.
+      I study political economy and political behavior, with a focus on the energy transition. I'm currently interested in how voters, firms, and governments bargain over disruptive infrastructure projects. I enjoy collecting big data sets from difficult sources, ranging from government archives to local news to social media.
     </p>
     <p>
       I am currently affiliated with the Climate Politics Lab at Michigan and Free Systems at the Stanford Graduate School of Business.
