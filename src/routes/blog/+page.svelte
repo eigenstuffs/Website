@@ -1,64 +1,68 @@
 <script>
-	const postsToList = [
+	import Seo from '$lib/components/Seo.svelte';
+
+	const posts = [
 		{
-			title: 'Reflections on the Grad School Application Cycle',
+			title: 'Reflections on Applying to Graduate School',
 			url: '/blog/grad-school-applications',
 			date: '2025-05-02',
-			summary: 'Thinking back on the graduate school application process...'
+			summary:
+				'Notes from a political science PhD admissions cycle: what helped, what I would do differently, and what the GRE actually costs you.'
 		}
 	];
+
+	/** @param {string} iso */
+	const formatDate = (iso) =>
+		new Date(`${iso}T00:00:00`).toLocaleDateString('en-US', {
+			year: 'numeric',
+			month: 'long',
+			day: 'numeric'
+		});
 </script>
 
-<div class="blog-page">
-	<h1 class="page-title">Blog</h1>
+<Seo title="Blog" description="Occasional posts by Branden Bohrnsen." />
 
-	<section class="post-list">
-		{#each postsToList as post (post.url)}
-			<article class="post-entry">
-				<time class="post-date">{post.date}</time>
-				<h3><a href={post.url}>{post.title}</a></h3>
-				<p class="post-summary">{post.summary}</p>
-			</article>
-		{/each}
-	</section>
-</div>
+<h1 class="page-title">Blog</h1>
+
+<ul class="post-list">
+	{#each posts as post (post.url)}
+		<li class="post-entry">
+			<time class="post-date" datetime={post.date}>{formatDate(post.date)}</time>
+			<h2 class="item-title"><a href={post.url}>{post.title}</a></h2>
+			<p class="post-summary">{post.summary}</p>
+		</li>
+	{/each}
+</ul>
 
 <style>
-	.post-entry {
-		margin-bottom: 2rem;
+	.post-list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		gap: var(--sp-5);
+	}
+
+	.post-entry + .post-entry {
+		padding-top: var(--sp-5);
+		border-top: 1px solid var(--border);
 	}
 
 	.post-date {
-		font-family: var(--font-mono);
-		font-size: 0.78rem;
-		color: var(--dim);
-		letter-spacing: 0.02em;
 		display: block;
-		margin-bottom: 0.3rem;
+		font-family: var(--font-ui);
+		font-size: var(--fs-sm);
+		color: var(--dim);
+		margin-bottom: var(--sp-1);
 	}
 
-	h3 {
-		font-size: 1.05rem;
-		font-weight: 500;
-		margin: 0 0 0.35rem;
-		line-height: 1.35;
-	}
-
-	h3 a {
-		color: var(--text);
-		text-decoration: underline;
-		text-underline-offset: 2px;
-		text-decoration-color: #d4d4d8;
-	}
-
-	h3 a:hover {
-		text-decoration-color: #a1a1aa;
+	.item-title a {
+		color: var(--text-heading);
 	}
 
 	.post-summary {
-		font-size: 0.95rem;
-		line-height: 1.6;
-		margin: 0;
-		color: var(--dim);
+		margin: var(--sp-2) 0 0;
+		color: var(--text);
 	}
 </style>

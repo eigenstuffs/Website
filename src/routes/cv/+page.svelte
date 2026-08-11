@@ -1,19 +1,25 @@
-<div class="cv-page">
-	<h1 class="page-title">Curriculum Vitae</h1>
+<script>
+	import Seo from '$lib/components/Seo.svelte';
 
-	<a href="/branden_bohrnsen_cv.pdf" download class="download-btn">Download PDF ↓</a>
+	const pdf = '/branden_bohrnsen_cv.pdf';
+</script>
+
+<Seo title="CV" description="Curriculum vitae for Branden Bohrnsen." />
+
+<div class="cv-page">
+	<header class="cv-header">
+		<h1 class="page-title">Curriculum Vitae</h1>
+		<a href={pdf} download class="download-btn">Download PDF ↓</a>
+	</header>
 
 	<div class="pdf-frame">
-		<iframe
-			src="/branden_bohrnsen_cv.pdf"
-			title="CV PDF Viewer"
-			aria-label="Embedded PDF of Curriculum Vitae"
+		<iframe src={pdf} title="Curriculum vitae" aria-label="Embedded PDF of curriculum vitae"
 		></iframe>
-		<p class="fallback">
-			Your browser doesn't support embedded PDFs.
-			<a href="/branden_bohrnsen_cv.pdf" download>Download the CV directly</a>.
-		</p>
 	</div>
+
+	<p class="fallback">
+		If the document doesn’t load, <a href={pdf} download>download the CV directly</a>.
+	</p>
 </div>
 
 <style>
@@ -24,39 +30,57 @@
 		width: 100%;
 	}
 
+	.cv-header {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: baseline;
+		justify-content: space-between;
+		gap: var(--sp-3);
+	}
+
+	.cv-header .page-title {
+		margin-bottom: var(--sp-4);
+	}
+
 	.download-btn {
-		display: inline-block;
-		align-self: flex-start;
-		font-size: 0.9rem;
+		font-family: var(--font-ui);
+		font-size: var(--fs-sm);
 		color: var(--text);
-		margin-bottom: 1.25rem;
-		text-underline-offset: 2px;
-		text-decoration-color: #d4d4d8;
+		text-decoration: none;
+		padding-bottom: 2px;
+		border-bottom: 1px solid var(--underline);
+		transition: border-color 0.15s ease;
 	}
 
 	.download-btn:hover {
-		text-decoration-color: #a1a1aa;
+		border-bottom-color: var(--underline-hover);
 	}
 
 	.pdf-frame {
-		flex-grow: 1;
 		display: flex;
 		overflow: hidden;
-		border-top: 1px solid var(--border);
+		border: 1px solid var(--border);
+		border-radius: 4px;
+		background: var(--surface);
 	}
 
 	iframe {
 		flex-grow: 1;
 		border: none;
 		width: 100%;
-		height: 100%;
-		min-height: 75vh;
+		min-height: 78vh;
 	}
 
 	.fallback {
-		display: none;
-		text-align: center;
-		padding: 1.5rem;
-		font-size: 0.9rem;
+		font-family: var(--font-ui);
+		font-size: var(--fs-sm);
+		color: var(--dim);
+		margin: var(--sp-3) 0 0;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.download-btn {
+			transition: none;
+		}
 	}
 </style>
