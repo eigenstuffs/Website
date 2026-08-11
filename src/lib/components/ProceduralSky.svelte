@@ -32,8 +32,6 @@
 	let ro = null;
 	/** @type {IntersectionObserver | null} */
 	let io = null;
-	/** @type {MediaQueryList | null} */
-	let schemeQuery = null;
 
 	/** @type {Record<string, WebGLUniformLocation | null>} */
 	let uniforms = {};
@@ -43,7 +41,7 @@
 	let onScreen = true;
 	/** Tab is foregrounded. */
 	let tabVisible = true;
-	/** Page background in linear 0–1 RGB, so the band can settle into it in either theme. */
+	/** Page background in 0–1 RGB, read from --bg so the band settles into it exactly. */
 	let pageBg = [1, 1, 1];
 
 	const VS = `
@@ -187,7 +185,7 @@ void main() {
 		return s;
 	}
 
-	/** Read --bg off the document so the band settles into the active theme. */
+	/** Read --bg off the document so the band settles into the page colour exactly. */
 	function readPageBg() {
 		if (typeof window === 'undefined') return;
 		const raw = getComputedStyle(document.documentElement).getPropertyValue('--bg').trim();
@@ -293,11 +291,6 @@ void main() {
 		if (raf == null) draw(performance.now());
 	}
 
-	function onSchemeChange() {
-		readPageBg();
-		syncPalette();
-	}
-
 	function onVisibility() {
 		tabVisible = !document.hidden;
 		syncLoop();
@@ -334,9 +327,6 @@ void main() {
 		reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 		startTime = performance.now();
 		readPageBg();
-
-		schemeQuery = window.matchMedia('(prefers-color-scheme: dark)');
-		schemeQuery.addEventListener('change', onSchemeChange);
 
 		if (!canvas) {
 			useFallback = true;
@@ -436,7 +426,6 @@ void main() {
 		if (clockTimer != null) clearInterval(clockTimer);
 		ro?.disconnect();
 		io?.disconnect();
-		schemeQuery?.removeEventListener('change', onSchemeChange);
 		if (typeof document !== 'undefined') {
 			document.removeEventListener('visibilitychange', onVisibility);
 		}
