@@ -24,7 +24,7 @@
 	<h1>Branden Bohrnsen</h1>
 
 	<div class="bio">
-		<p class="lede">I’m interested in political economy and the energy transition.</p>
+		<p>I’m interested in political economy and the energy transition.</p>
 		<p>
 			I’m a PhD student in Public Policy &amp; Political Science at Michigan’s
 			<a href="https://fordschool.umich.edu/" target="_blank" rel="noopener noreferrer">Ford School</a
@@ -79,12 +79,6 @@
 		flex-direction: column;
 		gap: var(--sp-4);
 		max-width: 32rem;
-	}
-
-	.lede {
-		font-size: 1.1875rem;
-		line-height: 1.55;
-		color: var(--text);
 	}
 
 	.home-links {
