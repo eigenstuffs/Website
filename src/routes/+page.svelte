@@ -1,140 +1,109 @@
 <script>
-  import Icon from '@iconify/svelte';
-  import NetworkField from '$lib/components/NetworkField.svelte';
+	const pageLinks = [
+		{ label: 'CV', href: '/cv' },
+		{ label: 'Research', href: '/research' },
+		{ label: 'Writings', href: '/writings' },
+		{ label: 'Games', href: '/games' }
+	];
 
-  const socialLinks = [
-    { label: "bsky", href: "https://bsky.app/profile/branden.zip", iconName: "simple-icons:bluesky" },
-    { label: "x", href: "https://x.com/eigenstuffs", iconName: "simple-icons:x" },
-    { label: "github", href: "https://github.com/eigenstuffs", iconName: "simple-icons:github" },
-    { label: "linkedin", href: "https://linkedin.com/in/brandenbohrnsen", iconName: "simple-icons:linkedin" },
-  ];
+	const socialLinks = [
+		{ label: 'Email', href: 'mailto:bohrnsen@umich.edu' },
+		{ label: 'Bluesky', href: 'https://bsky.app/profile/branden.zip' },
+		{ label: 'X', href: 'https://x.com/eigenstuffs' },
+		{ label: 'GitHub', href: 'https://github.com/eigenstuffs' }
+	];
 </script>
 
+<svelte:head>
+	<title>Branden Bohrnsen</title>
+	<meta
+		name="description"
+		content="PhD student in Public Policy & Political Science at the University of Michigan, studying political economy and the energy transition."
+	/>
+</svelte:head>
+
 <div class="home">
-  <h1>Branden Bohrnsen</h1>
-  <p class="role">PhD Student, Public Policy & Political Science, University of Michigan</p>
+	<h1>Branden Bohrnsen</h1>
 
-  <nav class="social-row" aria-label="Social links">
-    {#each socialLinks as link}
-      <a
-        href={link.href}
-        target={link.href.startsWith('mailto:') ? '_self' : '_blank'}
-        rel="noopener noreferrer"
-        class="pill"
-      >
-        <Icon icon={link.iconName} />
-        {link.label}
-      </a>
-    {/each}
-  </nav>
+	<div class="bio">
+		<p>I'm interested in political economy and the energy transition.</p>
+		<p>
+			I'm a PhD student in Public Policy &amp; Political Science at Michigan's
+			<a href="https://fordschool.umich.edu/" target="_blank" rel="noopener noreferrer">Ford School</a>.
+			I study how voters, firms, and governments bargain over disruptive infrastructure.
+		</p>
+		<p>
+			I'm affiliated with the Climate Politics Lab at Michigan and
+			<a href="https://freesystems.substack.com/" target="_blank" rel="noopener noreferrer">Free Systems</a>
+			at Stanford GSB.
+		</p>
+	</div>
 
-  <NetworkField />
-
-  <div class="bio">
-    <p>
-      Hello! I am a PhD student in Public Policy & Political Science at the University of Michigan's Ford School.
-    </p>
-    <p>
-      I study political economy and political behavior, with a focus on the energy transition. I'm currently interested in how voters, firms, and governments bargain over disruptive infrastructure projects. I enjoy collecting big data sets from difficult sources, ranging from government archives to local news to social media.
-    </p>
-    <p>
-      I am currently affiliated with the Climate Politics Lab at Michigan and Free Systems at the Stanford Graduate School of Business.
-    </p>
-    <p class="email">bohrnsen@umich.edu</p>
-  </div>
+	<nav class="home-links" aria-label="Site and social links">
+		{#each pageLinks as link}
+			<a href={link.href}>{link.label}</a>
+		{/each}
+		<span class="sep" aria-hidden="true">·</span>
+		{#each socialLinks as link}
+			<a
+				href={link.href}
+				target={link.href.startsWith('mailto:') ? undefined : '_blank'}
+				rel={link.href.startsWith('mailto:') ? undefined : 'noopener noreferrer'}
+			>
+				{link.label}
+			</a>
+		{/each}
+	</nav>
 </div>
 
 <style>
-  .home {
-    width: 100%;
-  }
+	.home {
+		padding-top: 0.25rem;
+	}
 
-  h1 {
-    font-size: 3.5rem;
-    font-weight: 700;
-    letter-spacing: -0.03em;
-    margin-bottom: 0.25rem;
-    position: relative;
-    display: inline-block;
-  }
+	h1 {
+		font-size: 1.125rem;
+		font-weight: 500;
+		color: var(--text);
+		margin: 0 0 1.35rem;
+		letter-spacing: -0.015em;
+	}
 
-  h1::after {
-    content: '';
-    display: block;
-    width: 3rem;
-    height: 4px;
-    background: var(--accent);
-    margin-top: 0.35rem;
-    border-radius: 2px;
-  }
+	.bio {
+		display: flex;
+		flex-direction: column;
+		gap: 1.15rem;
+	}
 
-  .role {
-    font-family: var(--font-mono);
-    font-size: 0.8rem;
-    color: var(--dim);
-    margin: 0.75rem 0 1.5rem;
-    letter-spacing: 0.02em;
-  }
+	.bio p {
+		margin: 0;
+		color: var(--text);
+	}
 
-  .social-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 1.5rem;
-  }
+	.home-links {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: baseline;
+		gap: 0.65rem 0.9rem;
+		margin-top: 1.85rem;
+	}
 
-  .pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    padding: 0.3rem 0.65rem;
-    border: 1.5px solid var(--border);
-    border-radius: 100px;
-    color: var(--dim);
-    transition: color 0.15s, border-color 0.15s, background 0.15s;
-  }
+	.home-links a {
+		font-size: 0.9rem;
+		color: var(--dim);
+		text-decoration: underline;
+		text-underline-offset: 2px;
+		text-decoration-color: #d4d4d8;
+	}
 
-  .pill:hover {
-    color: var(--accent);
-    border-color: var(--accent);
-    background: rgba(194, 65, 12, 0.05);
-  }
+	.home-links a:hover {
+		color: var(--text);
+		text-decoration-color: #a1a1aa;
+	}
 
-  .pill :global(svg) {
-    width: 0.85rem;
-    height: 0.85rem;
-  }
-
-  .bio {
-    max-width: 38rem;
-  }
-
-  .bio p {
-    margin: 0 0 1rem;
-  }
-
-  .bio a {
-    color: var(--accent);
-    border-bottom: 1.5px solid rgba(194, 65, 12, 0.25);
-    transition: border-color 0.15s;
-  }
-
-  .bio a:hover {
-    border-color: var(--accent);
-  }
-
-  .bio .email {
-    font-family: var(--font-mono);
-    font-size: 0.85rem;
-    color: var(--dim);
-    margin-top: 0.25rem;
-  }
-
-  @media (max-width: 600px) {
-    h1 {
-      font-size: 2.4rem;
-    }
-  }
+	.sep {
+		color: #d4d4d8;
+		font-size: 0.85rem;
+		user-select: none;
+	}
 </style>

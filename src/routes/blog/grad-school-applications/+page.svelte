@@ -64,16 +64,16 @@
 
   .post-header {
     margin-bottom: 2rem;
-    padding-bottom: 1.5rem;
-    border-bottom: 2px solid var(--border);
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--border);
   }
 
   h1 {
-    font-size: 2rem;
-    font-weight: 700;
-    letter-spacing: -0.02em;
+    font-size: 1.25rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
     margin: 0 0 0.5rem 0;
-    line-height: 1.25;
+    line-height: 1.3;
   }
 
   .post-date {
@@ -84,9 +84,9 @@
   }
 
   .post-content p {
-    font-size: 1.0625rem;
-    line-height: 1.75;
-    margin: 0 0 1.25rem 0;
+    font-size: 1rem;
+    line-height: 1.7;
+    margin: 0 0 1.15rem 0;
   }
 
   .post-content p:last-child {
@@ -94,19 +94,17 @@
   }
 
   .footer-nav {
-    margin-top: 3rem;
-    padding-top: 1.25rem;
-    border-top: 2px solid var(--border);
+    margin-top: 2.5rem;
+    padding-top: 1.15rem;
+    border-top: 1px solid var(--border);
   }
 
   .footer-nav a {
-    font-family: var(--font-mono);
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     color: var(--dim);
-    transition: color 0.15s;
   }
 
   .footer-nav a:hover {
-    color: var(--accent);
+    color: var(--text);
   }
 </style>
