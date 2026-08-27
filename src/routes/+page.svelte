@@ -24,7 +24,7 @@
 	<h1>Branden Bohrnsen</h1>
 
 	<div class="bio">
-		<p>I’m interested in political economy and the energy transition.</p>
+		<p>Hello! I’m interested in political economy and the energy transition.</p>
 		<p>
 			I’m a PhD student in Public Policy &amp; Political Science at Michigan’s
 			<a href="https://fordschool.umich.edu/" target="_blank" rel="noopener noreferrer">Ford School</a
@@ -36,7 +36,15 @@
 				>Free Systems</a
 			> at Stanford GSB.
 		</p>
-		<p><strong>Fall 2026 office hours:</strong> Thursdays, 1–3 PM, Haven Hall 7701.</p>
+		<p>
+			<strong>Fall 2026 office hours:</strong> Thursdays, 1–3 PM, Haven Hall 7701.
+			<a
+				href="https://calendly.com/bohrnsen-umich/office-hours"
+				target="_blank"
+				rel="noopener noreferrer"
+				>Please book here.</a
+			>
+		</p>
 	</div>
 
 	<nav class="home-links" aria-label="Site and social links">
