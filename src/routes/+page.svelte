@@ -36,6 +36,7 @@
 				>Free Systems</a
 			> at Stanford GSB.
 		</p>
+		<p><strong>Fall 2026 office hours:</strong> Thursdays, 1–3 PM, Haven Hall 7701.</p>
 	</div>
 
 	<nav class="home-links" aria-label="Site and social links">
