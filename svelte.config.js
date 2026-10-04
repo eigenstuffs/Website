@@ -5,9 +5,8 @@ import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 const config = {
 	preprocess: vitePreprocess(),
 	kit: {
-		// Vercel picks the runtime on deploy; locally the adapter rejects Node > 22
-		// unless one is named.
-		adapter: adapter({ runtime: process.env.VERCEL ? undefined : 'nodejs22.x' })
+		// Set a string explicitly so the adapter emits a valid Vercel function config.
+		adapter: adapter({ runtime: 'nodejs24.x' })
 	}
 };
 
