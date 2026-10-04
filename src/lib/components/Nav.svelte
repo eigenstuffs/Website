@@ -2,15 +2,13 @@
 	import { page } from '$app/stores';
 
 	const navItems = [
-		{ path: '/cv', name: 'CV' },
-		{ path: '/research', name: 'Research' },
-		{ path: '/writings', name: 'Writings' },
-		{ path: '/games', name: 'Games' }
+		{ path: '/readme', name: 'README' },
+		{ path: '/cv', name: 'CV' }
 	];
 </script>
 
 <nav aria-label="Primary">
-	<a href="/" class="nav-brand">branden.zip</a>
+	<a href="/" class="nav-brand">Branden Bohrnsen</a>
 	<ul>
 		{#each navItems as item}
 			{@const active = $page.url.pathname.startsWith(item.path)}
@@ -25,28 +23,19 @@
 
 <style>
 	nav {
+		font-size: var(--fs-small);
 		display: flex;
+		flex-wrap: wrap;
 		align-items: baseline;
 		justify-content: space-between;
-		gap: var(--sp-4);
-		padding: var(--sp-3) 0 var(--sp-2);
-		position: relative;
-		z-index: 2;
-		font-family: var(--font-ui);
+		gap: var(--sp-2) var(--sp-4);
+		padding: var(--sp-6) 0 0;
 	}
 
 	.nav-brand {
-		font-size: 0.9375rem;
-		font-weight: 600;
-		letter-spacing: -0.01em;
-		color: var(--text-heading);
+		color: var(--text);
+		font-weight: 500;
 		text-decoration: none;
-	}
-
-	.nav-brand:hover {
-		text-decoration: underline;
-		text-underline-offset: 3px;
-		text-decoration-color: var(--underline-hover);
 	}
 
 	ul {
@@ -55,47 +44,15 @@
 		margin: 0;
 		display: flex;
 		flex-wrap: wrap;
-		gap: var(--sp-4);
-		justify-content: flex-end;
+		gap: var(--sp-2) var(--sp-4);
 	}
 
-	li a {
-		font-size: var(--fs-sm);
+	ul a {
 		color: var(--dim);
 		text-decoration: none;
-		padding-bottom: 2px;
-		border-bottom: 1px solid transparent;
-		transition:
-			color 0.15s ease,
-			border-color 0.15s ease;
 	}
 
-	li a:hover {
+	ul a.active {
 		color: var(--text);
-		border-bottom-color: var(--underline-hover);
-	}
-
-	li a.active {
-		color: var(--text);
-		border-bottom-color: var(--text);
-	}
-
-	@media (max-width: 480px) {
-		nav {
-			flex-direction: column;
-			align-items: flex-start;
-			gap: var(--sp-2);
-		}
-
-		ul {
-			justify-content: flex-start;
-			gap: var(--sp-3);
-		}
-	}
-
-	@media (prefers-reduced-motion: reduce) {
-		li a {
-			transition: none;
-		}
 	}
 </style>
