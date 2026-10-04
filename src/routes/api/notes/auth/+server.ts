@@ -4,7 +4,7 @@ import { dev } from '$app/environment';
 import { getPassword, getSessionToken, isAuthenticated } from '$lib/server/auth';
 
 export const config = {
-	runtime: 'nodejs20.x'
+	runtime: 'nodejs24.x'
 };
 
 export const GET: RequestHandler = async ({ cookies }) => {

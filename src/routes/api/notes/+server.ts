@@ -3,7 +3,7 @@ import type { RequestHandler } from './$types';
 import { isAuthenticated, gistFetch, getEnv } from '$lib/server/auth';
 
 export const config = {
-	runtime: 'nodejs20.x'
+	runtime: 'nodejs24.x'
 };
 
 const META_FILENAME = '.notes-meta.json';
